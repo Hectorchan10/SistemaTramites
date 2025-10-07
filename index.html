@@ -1,33 +1,194 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1" />
-    <title>TRÁMITES - Home</title>
-    <link
-      rel="stylesheet"
-      href="style/style.css" />
-    <link
-      rel="stylesheet"
-      href="style/variables.css" />
-    <link
-      rel="stylesheet"
-      href="style/responsive.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema de Trámites - Guatemala</title>
+    <link rel="stylesheet" href="/style/style.css" />
+    <style>
+      .solicitud-documentos {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        background: #f9f9f9;
+        border-radius: 16px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        padding: 2rem;
+        margin: 2rem auto;
+        max-width: 900px;
+      }
+      .solicitud-documentos .left-section {
+        flex: 1 1 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .solicitud-documentos .label {
+        font-size: 1rem;
+        color: #1976d2;
+        font-weight: bold;
+        margin-bottom: 0.7rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .solicitud-documentos .title {
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+        color: #222;
+        font-weight: 700;
+      }
+      .solicitud-documentos .description {
+        font-size: 1.15rem;
+        color: #444;
+        margin-bottom: 1.2rem;
+      }
+      .solicitud-documentos .form-section {
+        flex: 1 1 320px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+        padding: 2rem 1.5rem;
+        display: flex;
+        align-items: center;
+      }
+      .solicitud-documentos form {
+        width: 100%;
+      }
+      .solicitud-documentos .form-group {
+        margin-bottom: 1.2rem;
+      }
+      .solicitud-documentos .input-field {
+        width: 100%;
+        padding: 0.8rem 1rem;
+        border: 1px solid #bbb;
+        border-radius: 8px;
+        font-size: 1.05rem;
+        background: #f5f5f5;
+        transition: border-color 0.2s, background 0.2s;
+      }
+      .solicitud-documentos .input-field:focus {
+        border-color: #1976d2;
+        outline: none;
+        background: #fff;
+      }
+      .solicitud-documentos .submit-btn {
+        width: 100%;
+        padding: 1rem;
+        background: linear-gradient(90deg, #1976d2 60%, #1565c0 100%);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.15rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+      }
+      .solicitud-documentos .submit-btn:hover {
+        background: linear-gradient(90deg, #1565c0 60%, #1976d2 100%);
+        box-shadow: 0 4px 16px rgba(25, 118, 210, 0.12);
+      }
+      .solicitud-documentos .input-field {
+        color: #1976d2; /* Color del texto */
+      }
+
+      .solicitud-documentos .input-field:focus {
+        color: #1565c0; /* Color del texto al enfocar */
+      }
+
+      @media (max-width: 700px) {
+        .solicitud-documentos {
+          flex-direction: column;
+          padding: 1rem;
+        }
+        .solicitud-documentos .form-section {
+          padding: 1rem;
+        }
+      }
+      /* Mejoras de accesibilidad */
+      .solicitud-documentos label {
+        display: block;
+        margin-bottom: 0.3rem;
+        font-weight: 500;
+        color: #1976d2;
+      }
+    </style>
   </head>
+
   <body>
     <header>
-      <h1>TRÁMITES</h1>
-      <nav>
-        <a href="views/index.html">Home</a>
-        <a href="views/login.html">Login</a>
-        <a href="views/nuevotramite.html">Nuevo trámite</a>
-        <a href="views/busqueda.html">Búsqueda</a>
-        <a href="views/admin/dashboard.html">Admin</a>
-      </nav>
+      <div class="topbar" role="navigation" aria-label="Barra de navegación principal">
+        <div class="logo">
+          <a href="/index.html">
+            <h1>Tramites</h1>
+          </a>
+        </div>
+        <button class="hamburger" aria-label="Menú">☰</button>
+        <nav>
+          <ul>
+            <li><a href="/index.html">Inicio</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="/views/login.html">Login</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="hero-banner">
+        <div class="hero-content">
+          <h1>Trámites</h1>
+          <p>Facilitando tus gestiones de manera rápida y eficiente</p>
+          <a href="#tramites" class="hero-btn">Consultar</a>
+          <a href="#tramites" class="hero-btn">Nuevo Trámite</a>
+        </div>
+      </div>
     </header>
-
-    <script src="js/main.js"></script>
+    <main>
+      <section class="solicitud-documentos">
+        <div class="left-section">
+          <span class="label">SOLICITUD DE DOCUMENTOS</span>
+          <h2 class="title">Solicita tus documentos en cualquier momento</h2>
+          <p class="description">
+            Gracias por elegir nuestro servicio. Ofrecemos trámites de documentos rápidos y
+            sencillos en línea, totalmente gratis. ¡Comparte nuestro sitio web con tus amigos!
+          </p>
+        </div>
+        <div class="form-section">
+          <form>
+            <div class="form-group">
+              <label for="fullName">Nombre completo</label>
+              <input
+                type="text"
+                class="input-field"
+                placeholder="Nombre completo"
+                id="fullName"
+                required
+                autocomplete="name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Correo electrónico</label>
+              <input
+                type="email"
+                class="input-field"
+                placeholder="Correo electrónico"
+                id="email"
+                required
+                autocomplete="email"
+              />
+            </div>
+            <div class="form-group">
+              <label for="documents">Documentos que solicitas</label>
+              <textarea
+                class="input-field"
+                placeholder="Documentos que solicitas"
+                id="documents"
+                required
+                rows="4"
+              ></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Enviar solicitud</button>
+          </form>
+        </div>
+      </section>
+    </main>
   </body>
 </html>

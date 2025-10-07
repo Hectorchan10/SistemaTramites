@@ -1,0 +1,40 @@
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(var(--esp) * 1.2) var(--esp);
+  background: linear-gradient(90deg, var(--color-primario), var(--color-secundario));
+}
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  color: var(--color-texto);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background 0.3s ease, color 0.3s ease;
+  position: relative;
+}
+
+nav a:hover,
+nav a:focus {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--color-texto);
+}
+/* ================== BOTÓN HAMBURGUESA ================== */
+.hamburger {
+  display: none; /* oculto en escritorio */
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: var(--color-texto);
+  cursor: pointer;
+  margin: 10px;
+}
