@@ -12,39 +12,46 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
     </div>
 
     <div class="nav-menu">
-        <a href="index.php" class="nav-item <?php echo ($current_page == 'index') ? 'active' : ''; ?>">
+        <a href="dashboard.php" class="nav-item <?php echo ($current_page == 'dashboard') ? 'active' : ''; ?>">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
             </svg>
-            Inicio
+            Tablero
         </a>
 
-        <a href="dashboard.php" class="nav-item <?php echo ($current_page == 'dashboard') ? 'active' : ''; ?>">
+        <a href="tipos.php" class="nav-item <?php echo ($current_page == 'tipos') ? 'active' : ''; ?>">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
             </svg>
-            Dashboard
+            Tipos de Tramites
         </a>
 
-        <a href="proyectos.php" class="nav-item <?php echo ($current_page == 'proyectos') ? 'active' : ''; ?>">
+        <a href="estados.php" class="nav-item <?php echo ($current_page == 'estados') ? 'active' : ''; ?>">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
             </svg>
-            Proyectos
+            Estados de Tramites
         </a>
 
-        <a href="equipo.php" class="nav-item <?php echo ($current_page == 'equipo') ? 'active' : ''; ?>">
+        <a href="tramites.php" class="nav-item <?php echo ($current_page == 'tramites') ? 'active' : ''; ?>">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
             </svg>
-            Equipo
+            Tramites
         </a>
 
-        <a href="mensajes.php" class="nav-item <?php echo ($current_page == 'mensajes') ? 'active' : ''; ?>">
+        <a href="areas.php" class="nav-item <?php echo ($current_page == 'areas') ? 'active' : ''; ?>">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
             </svg>
-            Mensajes
+            Areas
+        </a>
+
+        <a href="usuarios.php" class="nav-item <?php echo ($current_page == 'usuarios') ? 'active' : ''; ?>">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+            </svg>
+            Usuarios
         </a>
 
         <a href="/logout.php" class="nav-item <?php echo ($current_page == 'configuracion') ? 'active' : ''; ?>">
@@ -56,14 +63,5 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
         </a>
     </div>
 
-    <div class="sidebar-footer">
-        <div class="user-info">
-            <div class="user-avatar">U</div>
-            <div class="user-details">
-                <div class="user-name">Usuario</div>
-                <div class="user-email">usuario@email.com</div>
-            </div>
-        </div>
-    </div>
 </nav>
 </html>
