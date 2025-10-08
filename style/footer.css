@@ -1,0 +1,123 @@
+/* Footer Mejorado */
+footer {
+  background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
+  padding: 50px 20px 20px;
+  margin-top: 60px;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-between;
+  padding-bottom: 30px;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 220px;
+}
+
+.footer-section h3 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-section h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 2px;
+}
+
+.footer-section p {
+  line-height: 1.6;
+  opacity: 0.9;
+  margin-bottom: 15px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+  transition: transform 0.2s ease;
+}
+
+.footer-section ul li:hover {
+  transform: translateX(5px);
+}
+
+.footer-section ul li a {
+  text-decoration: none;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+  display: inline-block;
+}
+
+.footer-section ul li a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.footer-contact li,
+.footer-hours li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.9;
+}
+
+.footer-contact i {
+  width: 20px;
+}
+
+.footer-social {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.footer-social a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.footer-copyright {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-copyright p {
+  font-size: 14px;
+  opacity: 0.9;
+  margin-bottom: 10px;
+}
