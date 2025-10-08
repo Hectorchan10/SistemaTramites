@@ -1,72 +1,109 @@
-body{
-    background: #1e3a8a;
-}
-*{
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-header{
+body {
+    background: #1e3a8a;
+}
+
+header {
     text-align: left;
     padding: 20px;
     color: white;
 }
-.form-group{ 
-    display: grid;
-    gap: 20px;
-    max-width:1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: white;   
-    gap: 20px;
-    
+
+header h1 a {
+    text-decoration: none;
+    color: white;
 }
-.form-group2{ 
+
+.form-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-section {
+    margin-bottom: 30px;
+}
+
+.form-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #1e3a8a;
+    font-size: 1.5rem;
+}
+
+.form-group2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    max-width:1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: white;   
-    gap: 20px;
-    
+    gap: 25px;
 }
-.form-group3{ 
+
+.form-group3 {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
-    max-width:1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: white;   
-    gap: 20px;
-    
-}
-.form-group label{
-    margin-bottom: 0.05rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
 }
 
-.form-group input, .form-group select{
+@media (max-width: 768px) {
+    .form-group2,
+    .form-group3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
     width: 100%;
-    padding: 0.4rem;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 0.25rem;
+    border-radius: 6px;
     font-size: 1rem;
-    margin-bottom: 1rem;
-}
-.form-group input, .form-group textarea{
-    width: 100%;
+    margin-bottom: 16px;
 }
 
-.boton_crear{
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
 
+.note {
+    color: #00b7ff;
+    font-size: 0.9rem;
+    margin-top: -12px;
+    margin-bottom: 16px;
+    display: block;
+}
+
+.boton_crear {
     background-color: #1e3a8a;
     color: white;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
-    margin-left: 60%;
+    display: block;
+    margin: 20px auto 0;
+    width: fit-content;
+}
+
+.boton_crear:hover {
+    background-color: #1a306f;
 }
