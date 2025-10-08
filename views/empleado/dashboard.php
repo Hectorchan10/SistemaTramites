@@ -10,8 +10,7 @@
         <?php include '../sidebarempleado.php'; ?>
         <h1>Empleado</h1>
         <!-- Dentro del body -->
-<nav style="margin-bottom: 20px;">
-  <a href="/logout.php" class="btn-logout">Cerrar sesión</a>
+
 </nav>
     </body>
     </html>
