@@ -7,6 +7,7 @@
         <title>Document</title>
     </head>
     <body>
+        <?php include '../sidebarempleado.php'; ?>
         <h1>Empleado</h1>
         <!-- Dentro del body -->
 <nav style="margin-bottom: 20px;">

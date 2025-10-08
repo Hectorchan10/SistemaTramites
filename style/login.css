@@ -92,3 +92,24 @@ input:focus {
 .forgot-password a:hover {
   color: var(--color-primario);
 }
+
+.message {
+  padding: 10px;
+  border-radius: 4px;
+  margin: 10px 0;
+  display: none;
+}
+
+.message.error {
+  background-color: #ffe6e6;
+  color: #cc0000;
+  border: 1px solid #ffcccc;
+  display: block;
+}
+
+.message.success {
+  background-color: #e6ffe6;
+  color: #006600;
+  border: 1px solid #ccffcc;
+  display: block;
+}

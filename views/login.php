@@ -131,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
 
         <div class="forgot-password">
-          <a href="#">¿Olvidaste tu contraseña?</a>
+          <a href="/views/recuperar.php">¿Olvidaste tu contraseña?</a>
         </div>
       </div>
     </center>

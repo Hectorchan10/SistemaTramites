@@ -1,23 +1,20 @@
 <?php
+// database/config/config.php
 
-$mysqli = new mysqli("localhost", "tramites_DHC", "DHC", "tramites_DHC");
+$host = "localhost";
+$username = "desarrollo 344";          // Usuario por defecto en XAMPP
+$password = "344desarrollo";              // Contraseña vacía en XAMPP
+$dbname = "tramites";        // ← ¡Usa "tramites", no "344desarrollo"!
+
+$mysqli = new mysqli($host, $username, $password, $dbname);
+
 if ($mysqli->connect_errno) {
     die("Error de conexión: " . $mysqli->connect_error);
 }
-// else{
-//     die("conexión realizada");
-// }
 
 $mysqli->set_charset("utf8mb4");
 
-function limpiar($s)
-{
+function limpiar($s) {
     return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
 }
-// ¿Qué hace falta o se podría mejorar?
-// Variables de conexión centralizadas (en lugar de hardcodear valores):
-// $host = "localhost";---------------------------------------------------------
-// $user = "root";
-// $pass = "";
-// $db   = "venta_pc";
-// $mysqli = new mysqli($host, $user, $pass, $db);--------------------------------------------------------
+?>
