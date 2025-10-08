@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../style/style_n_tramite.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+</head>
+<body>
+    <header>
+        <h1>TRAMITE</h1>
+    </header>
+
+    <div class="form-group">
+        <div class="form-group2"><!--Div de columnas-->
+        <div>
+        <form action="">
+            <label for="">Asunto</label>
+            <input type="text" placeholder="Asunto">
+            <label for="">Tipo de trámite</label>
+            <select name="" id="">
+                <option value="">Seleccionar tipo</option>
+                <option value="">Opcion1</option>
+                <option value="">Opcion1</option>
+                <option value="">Opcion1</option>
+            </select>
+            <label for="">Adjuntar un documento</label>
+            <input type="file">
+            <label style="color: rgb(0, 183, 255);" for="">Puede adjuntar varios documentos.</label>
+            
+        </div>
+        <div>
+            <label for="">Mensaje</label>
+            <textarea name="" id="" cols="30" rows="10" placeholder="Escriba su mensaje"></textarea>
+        </div>
+        </div><!--Div de columnas-->
+
+        <h1 style="text-align: center;">Remitente</h1>
+        <div class="form-group3">
+            <div>
+                <label for="">Tipo persona</label>
+                <input type="text" placeholder="Personal Natural">
+                <label for="">Teléfono</label>
+                <input type="tel" id="phone-input" >
+            </div>
+            <div>
+                <label for="">DPI</label>
+                <input type="text" placeholder="0000 00000 0000">
+                <label for="">Correo Electrónico</label>
+                <input type="text" placeholder="Correo Electrónico">
+            </div>
+            <div>
+                <label for="">Nombre/Razón Social</label>
+                <input type="text" placeholder="Nombre/Razón Social">
+                <br><br><br><br><br>
+                <button class="boton_crear">Crear Trámite</button>
+            </div>
+        </div>
+        </form> 
+    </div>
+
+    <script>
+        const phoneInput = document.getElementById('phone-input');
+        windowl.intlTelInput(phoneInput, {
+            initialCountry: "auto",
+            geoIpLookup: (succes) => {
+                $.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+                    const countryCode = (resp && resp.country) ? resp.country : "";
+                    success(countryCode);
+                });
+            },
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+        })
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <footer>
+
+    </footer>
+</body>
+</html>
