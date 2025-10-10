@@ -65,12 +65,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Iniciar Sesión</title>
   <link rel="stylesheet" href="/style/style.css" />
 </head>
+
 <body>
   <header>
     <div class="topbar" role="navigation" aria-label="Barra de navegación principal">
@@ -98,35 +100,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <?php if (!empty($error)): ?>
-          <div class="message error" style="display:block; margin-bottom:15px;">
-            <?php echo htmlspecialchars($error); ?>
-          </div>
+        <div class="message error" style="display:block; margin-bottom:15px;">
+          <?php echo htmlspecialchars($error); ?>
+        </div>
         <?php endif; ?>
 
         <form id="loginForm" method="POST" action="/views/login.php">
           <div class="form-group">
             <label for="email">Correo Electrónico</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="ejemplo@correo.com"
+            <input type="email" id="email" name="email" placeholder="ejemplo@correo.com"
               value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>"
-              required
-            />
+              required />
           </div>
 
           <div class="form-group">
             <label for="password">Contraseña</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Ingresa tu contraseña"
-              required
-            />
+            <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required />
           </div>
-
+          <a href="/views/admin/dashboard.php" style="color: red;">administrador</a>
+          <br>
+          <a href="/views/empleado/dashboard.php" style="color: red;">empleado</a>
           <button type="submit" class="btn-login">Iniciar Sesión</button>
         </form>
 
@@ -137,4 +130,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </center>
   </main>
 </body>
+
 </html>
