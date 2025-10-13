@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 // Si ya está logueado, redirigir según su rol
@@ -11,36 +12,28 @@ if (isset($_SESSION['rol'])) {
     exit;
 }
 
-// Mensaje de error (si existe)
+require '../config/database/config/config_db.php'; // ← Tu conexión mysqli
+
 $error = '';
-$success = '';
 
 // Procesar el formulario solo si se envió por POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = filter_var($_POST['email'] ?? '', FILTER_SANITIZE_EMAIL);
-    $password = $_POST['password'] ?? '';
+    $email = filter_var(trim($_POST['email'] ?? ''), FILTER_SANITIZE_EMAIL);
+    $password = trim($_POST['password'] ?? '');
 
     if (empty($email) || empty($password)) {
-        $error = 'Por favor, completa todos los campos';
+        $error = 'Por favor, completa todos los campos.';
     } else {
-        // Conexión a la base de datos
-        $host = 'localhost';
-        $dbname = 'tramites';
-        $db_user = 'desarrollo 344'; // Cambia si es necesario
-        $db_pass = '344desarrollo';     // Cambia si es necesario
+        // Consulta segura con prepared statements (MySQLi)
+        $stmt = $mysqli->prepare("SELECT id, email, password, rol FROM usuarios WHERE email = ?");
+        if ($stmt) {
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $usuario = $result->fetch_assoc();
 
-        try {
-            $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $db_user, $db_pass);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            // Buscar usuario por email
-            $stmt = $pdo->prepare("SELECT id, email, password, rol FROM usuarios WHERE email = :email");
-            $stmt->execute(['email' => $email]);
-            $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            // Verificar contraseña (texto plano, como en tu ejemplo)
             if ($usuario && $password === $usuario['password']) {
-                // Iniciar sesión
+                // Idealmente usar password_verify() si guardas contraseñas hasheadas
                 $_SESSION['usuario_id'] = $usuario['id'];
                 $_SESSION['email'] = $usuario['email'];
                 $_SESSION['rol'] = $usuario['rol'];
@@ -53,11 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
                 exit;
             } else {
-                $error = 'Credenciales incorrectas';
+                $error = 'Credenciales incorrectas.';
             }
-        } catch (PDOException $e) {
-            $error = 'Error en la conexión a la base de datos';
-            // En producción, no muestres $e->getMessage() por seguridad
+        } else {
+            $error = 'Error al preparar la consulta.';
         }
     }
 }
