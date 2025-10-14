@@ -1,90 +1,104 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trámite</title>
-    <link rel="stylesheet" href="../../style/style_n_tramite.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
-</head>
-<body>
-    <header> 
-        <h1><a href="index.html">TRÁMITE</a></h1>
+    <link rel="stylesheet" href="../../style/style_n_tramite.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+    />
+  </head>
+  <body>
+    <header>
+      <h1><a href="index.html">TRÁMITE</a></h1>
     </header>
 
     <div class="form-container">
-        <div class="form-section">
-            <div class="form-group2">
-                <div class="form-group">
-                    <label for="asunto">Asunto</label>
-                    <input type="text" id="asunto" placeholder="Asunto">
+      <div class="form-section">
+        <div class="form-group2">
+          <div class="form-group">
+            <label for="asunto">Asunto</label>
+            <input type="text" id="asunto" placeholder="Asunto" />
 
-                    <label for="tipo-tramite">Tipo de trámite</label>
-                    <select id="tipo-tramite">
-                        <option value="">Seleccionar tipo</option>
-                        <option value="permiso">Trámite de permiso</option>
-                        <option value="luz">Trámite de luz</option>
-                        <option value="agua">Trámite de agua</option>
-                    </select>
+            <label for="tipo-tramite">Tipo de trámite</label>
+            <select id="tipo-tramite">
+              <option value="">Seleccionar tipo</option>
+              <option value="permiso">Trámite de permiso</option>
+              <option value="luz">Trámite de luz</option>
+              <option value="agua">Trámite de agua</option>
+            </select>
 
-                    <label for="documento">Adjuntar un documento</label>
-                    <input type="file" id="documento">
-                    <span class="note">Puede adjuntar varios documentos.</span>
-                </div>
+            <label for="documento">Adjuntar un documento</label>
+            <input type="file" id="documento" />
+            <span class="note">Puede adjuntar varios documentos.</span>
+          </div>
 
-                <div class="form-group">
-                    <label for="mensaje">Mensaje</label>
-                    <textarea id="mensaje" name="mensaje" placeholder="Escriba su mensaje"></textarea>
-                </div>
-            </div>
+          <div class="form-group">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" placeholder="Escriba su mensaje"></textarea>
+          </div>
         </div>
+      </div>
 
-        <div class="form-section">
-            <h2>Remitente</h2>
-            <div class="form-group3">
-                <div class="form-group">
-                    <label for="tipo-persona">Tipo de persona</label>
-                    <input type="text" id="tipo-persona" placeholder="Persona Natural">
+      <div class="form-section">
+        <h2>Remitente</h2>
+        <div class="form-group3">
+          <div class="form-group">
+            <label for="tipo-persona">Tipo de persona</label>
+            <input type="text" id="tipo-persona" placeholder="Persona Natural" />
 
-                    <label for="telefono">Teléfono</label>
-                    <input type="tel" id="phone-input">
-                </div>
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="phone-input" />
+          </div>
 
-                <div class="form-group">
-                    <label for="dpi">DPI</label>
-                    <input type="text" id="dpi" placeholder="0000 00000 0000">
+          <div class="form-group">
+            <label for="dpi">DPI</label>
+            <input type="text" id="dpi" placeholder="0000 00000 0000" />
 
-                    <label for="email">Correo Electrónico</label>
-                    <input type="email" id="email" placeholder="correo@ejemplo.com">
-                </div>
+            <label for="email">Correo Electrónico</label>
+            <input type="email" id="email" placeholder="correo@ejemplo.com" />
+          </div>
 
-                <div class="form-group">
-                    <label for="nombre">Nombre / Razón Social</label>
-                    <input type="text" id="nombre" placeholder="Nombre o Razón Social">
+          <div class="form-group">
+            <label for="nombre">Nombre / Razón Social</label>
+            <input type="text" id="nombre" placeholder="Nombre o Razón Social" />
 
-                    <button class="boton_crear">Crear Trámite</button>
-                </div>
-            </div>
+            <button class="boton_crear">Crear Trámite</button>
+          </div>
         </div>
+      </div>
     </div>
 
     <!-- Librerías externas -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
-    <script src="https://cdn.tiny.cloud/1/pd7k4eo4mt0558gp429v6f6xez5goya449c7htpos12bgwqt/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js"
+      referrerpolicy="origin"
+    ></script>
+    <script
+      src="https://cdn.tiny.cloud/1/no-api-key/tinymce/8/tinymce.min.js"
+      referrerpolicy="origin"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.tiny.cloud/1/pd7k4eo4mt0558gp429v6f6xez5goya449c7htpos12bgwqt/tinymce/8/tinymce.min.js"
+      referrerpolicy="origin"
+      crossorigin="anonymous"
+    ></script>
     <script>
-        // === 1. Editor WYSIWYG (TinyMCE) ===
-        tinymce.init({
-            selector: '#mensaje',
-            plugins: 'link lists',
-            toolbar: 'bold italic underline | bullist numlist | link',
-            menubar: false,
-            statusbar: false,
-            height: 300,
-            branding: false,
-            content_style: `
+      // === 1. Editor WYSIWYG (TinyMCE) ===
+      tinymce.init({
+        selector: '#mensaje',
+        plugins: 'link lists',
+        toolbar: 'bold italic underline | bullist numlist | link',
+        menubar: false,
+        statusbar: false,
+        height: 300,
+        branding: false,
+        content_style: `
                 body {
                     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                     font-size: 14px;
@@ -93,39 +107,41 @@
                     background-color: #fafafa;
                 }
             `,
-            setup: function(editor) {
-                editor.on('init', function() {
-                    editor.getContainer().style.border = '1px solid #ccc';
-                    editor.getContainer().style.borderRadius = '6px';
-                    editor.getContainer().style.boxShadow = '0 2px 4px rgba(0,0,0,0.05)';
-                });
-            }
-        });
+        setup: function (editor) {
+          editor.on('init', function () {
+            editor.getContainer().style.border = '1px solid #ccc';
+            editor.getContainer().style.borderRadius = '6px';
+            editor.getContainer().style.boxShadow = '0 2px 4px rgba(0,0,0,0.05)';
+          });
+        },
+      });
 
-        // === 2. Inicializar intl-tel-input con detección de país usando tu clave de ipinfo.io ===
-        const phoneInput = document.querySelector("#phone-input");
-        if (phoneInput) {
-            const API_KEY = "pd7k4eo4mt0558gp429v6f6xez5goya449c7htpos12bgwqt";
+      // === 2. Inicializar intl-tel-input con detección de país usando tu clave de ipinfo.io ===
+      const phoneInput = document.querySelector('#phone-input');
+      if (phoneInput) {
+        const API_KEY = 'pd7k4eo4mt0558gp429v6f6xez5goya449c7htpos12bgwqt';
 
-            // Llamada a ipinfo.io con tu clave
-            $.get(`https://ipinfo.io/json?token=${API_KEY}`)
-                .done(function(resp) {
-                    const countryCode = (resp && resp.country) ? resp.country.toLowerCase() : "us";
-                    window.intlTelInput(phoneInput, {
-                        initialCountry: countryCode,
-                        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
-                    });
-                })
-                .fail(function() {
-                    // Si falla, usar un país por defecto (ej. Guatemala: "gt")
-                    window.intlTelInput(phoneInput, {
-                        initialCountry: "gt",
-                        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
-                    });
-                });
-        }
+        // Llamada a ipinfo.io con tu clave
+        $.get(`https://ipinfo.io/json?token=${API_KEY}`)
+          .done(function (resp) {
+            const countryCode = resp && resp.country ? resp.country.toLowerCase() : 'us';
+            window.intlTelInput(phoneInput, {
+              initialCountry: countryCode,
+              utilsScript:
+                'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js',
+            });
+          })
+          .fail(function () {
+            // Si falla, usar un país por defecto (ej. Guatemala: "gt")
+            window.intlTelInput(phoneInput, {
+              initialCountry: 'gt',
+              utilsScript:
+                'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js',
+            });
+          });
+      }
     </script>
 
     <footer></footer>
-</body>
+  </body>
 </html>
