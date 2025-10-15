@@ -2,12 +2,10 @@
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use Dotenv\Dotenv;
 
-require __DIR__ . '/../config/email/Exception.php';
-require __DIR__ . '/../config/email/PHPMailer.php';
-require __DIR__ . '/../config/email/SMTP.php';
-
-
+// 🔹 Ruta correcta a vendor/autoload.php según tu estructura
+require __DIR__ . '/../vendor/autoload.php';
 
 class Mailer
 {
@@ -15,32 +13,29 @@ class Mailer
 
     public function __construct()
     {
-        $this->mail = new PHPMailer(true);
+        // Cargar variables de entorno desde la raíz
+        $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+        $dotenv->load();
 
-        // Configuración del servidor SMTP (Mailtrap)
+        $this->mail = new PHPMailer(true);
         $this->mail->isSMTP();
-        $this->mail->Host       = 'sandbox.smtp.mailtrap.io';
+        $this->mail->Host       = $_ENV['MAIL_HOST'];
         $this->mail->SMTPAuth   = true;
+<<<<<<< HEAD
         $this->mail->Username   = '3f45ddbabed13d';
         $this->mail->Password   = '577015870183c8';
+=======
+        $this->mail->Username   = $_ENV['MAIL_USERNAME'];
+        $this->mail->Password   = $_ENV['MAIL_PASSWORD'];
+>>>>>>> 01226670e4f86f28764caf5d843c06659c1b6e88
         $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $this->mail->Port       = 2525;
+        $this->mail->Port       = $_ENV['MAIL_PORT'];
         $this->mail->CharSet    = 'UTF-8';
 
-        // Configuración general
-        $this->mail->setFrom('no-reply@tramites.gt', 'Sistema de Trámites');
+        $this->mail->setFrom($_ENV['MAIL_FROM'], $_ENV['MAIL_FROM_NAME']);
         $this->mail->isHTML(true);
     }
 
-    /**
-     * Envía un correo electrónico.
-     * @param string $destinatario Correo destino.
-     * @param string $asunto Asunto del mensaje.
-     * @param string $rutaHtml Ruta del archivo HTML con el cuerpo.
-     * @param array $variables Variables opcionales para reemplazar en el HTML.
-     * @param array $adjuntos Lista de archivos adjuntos opcionales.
-     * @return bool|string true si se envía correctamente, o mensaje de error.
-     */
     public function enviarCorreo(string $destinatario, string $asunto, string $rutaHtml, array $variables = [], array $adjuntos = [])
     {
         try {
@@ -48,14 +43,12 @@ class Mailer
             $this->mail->addAddress($destinatario);
             $this->mail->Subject = $asunto;
 
-            // Leer el archivo HTML
             if (!file_exists($rutaHtml)) {
                 throw new Exception("No se encontró la plantilla HTML: $rutaHtml");
             }
 
             $mensajeHTML = file_get_contents($rutaHtml);
 
-            // Reemplazar variables {{variable}} dentro del HTML
             foreach ($variables as $clave => $valor) {
                 $mensajeHTML = str_replace('{{' . $clave . '}}', htmlspecialchars($valor), $mensajeHTML);
             }
@@ -63,7 +56,6 @@ class Mailer
             $this->mail->Body    = $mensajeHTML;
             $this->mail->AltBody = strip_tags($mensajeHTML);
 
-            // Adjuntar archivos (si hay)
             foreach ($adjuntos as $archivo => $nombre) {
                 if (is_file($archivo)) {
                     $this->mail->addAttachment($archivo, $nombre);
@@ -72,6 +64,7 @@ class Mailer
 
             $this->mail->send();
             return true;
+
         } catch (Exception $e) {
             return "Error al enviar: {$this->mail->ErrorInfo}";
         }

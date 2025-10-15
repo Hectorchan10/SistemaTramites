@@ -1,6 +1,8 @@
 <?php
+
 require '../../../config/database/config/config_db.php';
-require '../../../email/Mailer.php';
+
+require_once __DIR__ . '/../../../email/Mailer.php';
 
 $error = '';
 $exito = '';
@@ -98,26 +100,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h1>Editar Usuario</h1>
     <form method="POST">
         <?php if ($error): ?>
-            <div class="alert alert-error">
-                <strong>⚠️ Error:</strong> <?= htmlspecialchars($error) ?>
-            </div>
+        <div class="alert alert-error">
+            <strong>⚠️ Error:</strong>
+            <?= htmlspecialchars($error) ?>
+        </div>
         <?php endif; ?>
         <?php if ($exito): ?>
-            <div class="alert alert-success">
-                <strong>✓ Éxito:</strong> <?= htmlspecialchars($exito) ?>
-            </div>
+        <div class="alert alert-success">
+            <strong>✓ Éxito:</strong> <?= htmlspecialchars($exito) ?>
+        </div>
         <?php endif; ?>
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="<?= htmlspecialchars($usuario['email']) ?>" required><br><br>
+        <input type="email" id="email" name="email"
+            value="<?= htmlspecialchars($usuario['email']) ?>"
+            required><br><br>
 
         <label for="password">Nueva Contraseña (dejar en blanco para no cambiar):</label>
         <input type="password" id="password" name="password"><br><br>
 
         <label for="rol">Rol:</label>
         <select id="rol" name="rol" required>
-            <option value="admin" <?= $usuario['rol'] === 'admin' ? 'selected' : '' ?>>Admin</option>
-            <option value="usuario" <?= $usuario['rol'] === 'usuario' ? 'selected' : '' ?>>Usuario</option>
+            <option value="admin" <?= $usuario['rol'] === 'admin' ? 'selected' : '' ?>>Admin
+            </option>
+            <option value="usuario" <?= $usuario['rol'] === 'usuario' ? 'selected' : '' ?>>Usuario
+            </option>
         </select><br><br>
 
         <button type="submit">Actualizar Usuario</button>
