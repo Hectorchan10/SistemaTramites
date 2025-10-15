@@ -69,13 +69,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <header>
     <div class="topbar" role="navigation" aria-label="Barra de navegación principal">
       <div class="logo">
-        <a href="/index.html">
+        <a href="/index.php">
           <h1>Tramites</h1>
         </a>
       </div>
       <nav>
         <ul>
-          <li><a href="/index.html">Inicio</a></li>
+          <li><a href="/index.php">Inicio</a></li>
           <li><a href="#contacto">Contacto</a></li>
           <li><a href="/views/login.php">Login</a></li>
         </ul>
