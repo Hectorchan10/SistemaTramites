@@ -1,42 +1,81 @@
 <?php
 require '../../../config/database/config/config_db.php';
 require '../../../email/Mailer.php';
+
 $error = '';
 $exito = '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $nombre = trim($_POST['nombre_usuario'] ?? '');
     $email = filter_var(trim($_POST['email'] ?? ''), FILTER_SANITIZE_EMAIL);
-    $password = trim($_POST['password'] ?? ''); // contraseña sin encriptar     
-    //$password = password_hash(trim($_POST['password'] ?? ''), PASSWORD_DEFAULT); si se desea encriptar la contraseña 
-    $rol = trim($_POST['rol'] ?? ''); 
-    if (empty($email) || empty($password) || empty($rol)) {
-        die('Por favor, completa todos los campos.');
+    $password = trim($_POST['password'] ?? '');
+    $rol = trim($_POST['rol'] ?? '');
+    $DPI = trim($_POST['DPI'] ?? '');
+    $foto = $_FILES['foto']['name'] ?? null;
+
+    // Validación de campos obligatorios
+    if (empty($nombre) || empty($email) || empty($password) || empty($rol) || empty($DPI)) {
+        $error = 'Todos los campos son obligatorios.';
     }
 
-    // Insertar usuario en la base de datos
-    $stmt = $mysqli->prepare("INSERT INTO usuarios (email, password, rol) VALUES (?, ?, ?)");
-    if ($stmt) {
-        $stmt->bind_param("sss", $email, $password, $rol);
-        $stmt->execute();
-        $stmt->close();
+    // Verificar DPI duplicado
+    if (!$error) {
+        $stmtDPI = $mysqli->prepare("SELECT id_usuario FROM usuarios WHERE DPI=?");
+        $stmtDPI->bind_param("s", $DPI);
+        $stmtDPI->execute();
+        $resultDPI = $stmtDPI->get_result();
+        if ($resultDPI->num_rows > 0) {
+            $error = "El DPI $DPI ya está registrado.";
+        }
+        $stmtDPI->close();
+    }
 
-        // Enviar correo de confirmación
-        $mailer = new Mailer();
-        $resultado = $mailer->enviarCorreo(
-            $email,                                  // destinatario
-            'Registro Exitoso - Sistema de Trámites', // asunto
-            __DIR__ . '/../../../templates/correo_registro.html', // plantilla HTML
-            ['email' => $email, 'rol' => $rol , 'password' => $password] // variables dinámicas
-        );
+    if (!$error) {
+        // Encriptar contraseña
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
-        if ($resultado !== true) {
-            $error = " Error al enviar correo: $resultado";
+        // Manejar foto opcional
+        if ($foto && isset($_FILES['foto']['tmp_name']) && $_FILES['foto']['tmp_name'] !== '') {
+            $rutaCarpeta = dirname(__DIR__, 3) . '/uploads/usuarios/';
+            if (!is_dir($rutaCarpeta)) {
+                $foto = null; // Si la carpeta no existe, no se guarda foto
+            } else {
+                $nombreUnico = time() . '_' . basename($foto);
+                $rutaDestino = $rutaCarpeta . $nombreUnico;
+
+                if (!move_uploaded_file($_FILES['foto']['tmp_name'], $rutaDestino)) {
+                    $foto = null;
+                } else {
+                    $foto = $nombreUnico; // Guardar nombre único en DB
+                }
+            }
+        } else {
+            $foto = null; // Foto opcional
         }
 
-        // Redirigir luego de unos segundos
-        header('Location: /views/admin/usuario/usuarios.php');
-        exit;
-    } else {
-        $error = 'Error al agregar el usuario: ' . $mysqli->error;
+        // Insertar usuario en DB
+        $stmt = $mysqli->prepare("INSERT INTO usuarios (nombre_usuario,email,password,rol,foto,DPI) VALUES (?,?,?,?,?,?)");
+        $stmt->bind_param("ssssss", $nombre, $email, $passwordHash, $rol, $foto, $DPI);
+
+        if ($stmt->execute()) {
+            $stmt->close();
+
+            // Enviar correo de confirmación
+            $mailer = new Mailer();
+            $mailer->enviarCorreo(
+                $email,
+                'Registro Exitoso - Sistema de Trámites',
+                __DIR__ . '/../../../templates/correo_registro.html',
+                ['nombre' => $nombre, 'email' => $email, 'rol' => $rol, 'password' => $password]
+            );
+
+            header('Location: usuarios.php?mensaje=Usuario agregado correctamente');
+            exit;
+
+        } else {
+            $error = 'Error al agregar usuario: ' . $stmt->error;
+        }
     }
 }
 ?>
@@ -46,37 +85,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Usuario</title>
 </head>
 
 <body>
     <h1>Agregar Usuario</h1>
-    <form method="POST">
-        <?php if ($error): ?>
-            <div class="alert alert-error">
-                <strong>⚠️ Error:</strong> <?= htmlspecialchars($error) ?>
-            </div>
-        <?php endif; ?>
-        <?php if ($exito): ?>
-            <div class="alert alert-success">
-                <strong>✓ Éxito:</strong> <?= htmlspecialchars($exito) ?>
-            </div>
-        <?php endif; ?>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
 
-        <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password" required><br><br>
+    <?php if ($error): ?>
+    <div style="color:red;"><?= htmlspecialchars($error) ?></div>
+    <?php endif; ?>
 
-        <label for="rol">Rol:</label>
-        <select id="rol" name="rol" required>
-            <option value="admin">Admin</option>
-            <option value="usuario">Usuario</option>
+    <form method="POST" enctype="multipart/form-data">
+        <label>Nombre:</label><br>
+        <input type="text" name="nombre_usuario" required
+            value="<?= htmlspecialchars($_POST['nombre_usuario'] ?? '') ?>"><br><br>
+
+        <label>Email:</label><br>
+        <input type="email" name="email" required
+            value="<?= htmlspecialchars($_POST['email'] ?? '') ?>"><br><br>
+
+        <label>Contraseña:</label><br>
+        <input type="password" name="password" required><br><br>
+
+        <label>Rol:</label><br>
+        <select name="rol" required>
+            <option value="admin" <?= (($_POST['rol'] ?? '') === 'admin') ? 'selected' : '' ?>>Admin
+            </option>
+            <option value="empleado" <?= (($_POST['rol'] ?? '') === 'empleado') ? 'selected' : '' ?>>Empleado
+            </option>
         </select><br><br>
+
+        <label>DPI:</label><br>
+        <input type="text" name="DPI" maxlength="13" required
+            value="<?= htmlspecialchars($_POST['DPI'] ?? '') ?>"><br><br>
+
+        <label>Foto (opcional):</label><br>
+        <input type="file" name="foto" accept="image/*"><br><br>
 
         <button type="submit">Agregar Usuario</button>
     </form>
+    <br>
+    <a href="usuarios.php">← Volver a la lista de usuarios</a>
 </body>
 
 </html>

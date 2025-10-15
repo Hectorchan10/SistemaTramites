@@ -1,8 +1,7 @@
 <?php
 require '../../../config/database/config/config_db.php';
 
-// Consulta segura y validada
-$query = "SELECT id, email, rol FROM usuarios LIMIT 10"; // para limitar el resultado a 10 usuarios por cosulta
+$query = "SELECT id_usuario, nombre_usuario, email, rol, foto, DPI FROM usuarios LIMIT 10";
 $result = $mysqli->query($query);
 
 if (!$result) {
@@ -11,6 +10,7 @@ if (!$result) {
 
 $usuarios = $result->fetch_all(MYSQLI_ASSOC);
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -21,52 +21,63 @@ $usuarios = $result->fetch_all(MYSQLI_ASSOC);
 </head>
 
 <body>
-    <!-- <?php include '../sidebaradministrador.php'; ?>-->
+    <h1>Usuarios</h1>
+    <a href="agregar_usuario.php">+ Agregar Usuario</a>
 
-    <div>
-        <a href="agregar_usuario.php" class="boton-agregar">+ Agregar Usuario</a>
-
-        <?php if (isset($_GET['mensaje'])): ?>
-            <div style="padding: 15px; margin: 20px 0; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 5px;">
-                <strong>✓ Éxito:</strong> <?= htmlspecialchars($_GET['mensaje']) ?>
-            </div>
-        <?php endif; ?>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Email</th>
-                    <th>Rol</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if (count($usuarios) > 0): ?>
-                <?php foreach ($usuarios as $usuario): ?>
-                <tr>
-                    <td><?= htmlspecialchars($usuario['id']) ?>
-                    </td>
-                    <td><?= htmlspecialchars($usuario['email']) ?>
-                    </td>
-                    <td><?= htmlspecialchars($usuario['rol']) ?>
-                    </td>
-                    <td class="acciones">
-                        <a
-                            href="editar_usuario.php?id=<?= urlencode($usuario['id']) ?>">Editar</a>
-                        <a
-                            href="eliminar_usuario.php?id=<?= urlencode($usuario['id']) ?>">Eliminar</a>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-                <?php else: ?>
-                <tr>
-                    <td colspan="4">No se encontraron usuarios.</td>
-                </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
+    <?php if (isset($_GET['mensaje'])): ?>
+    <div style="padding:10px; background-color:#d4edda; color:#155724; border-radius:5px;">
+        <?= htmlspecialchars($_GET['mensaje']) ?>
     </div>
+    <?php endif; ?>
+
+    <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Rol</th>
+                <th>Foto</th>
+                <th>DPI</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if ($usuarios): ?>
+            <?php foreach ($usuarios as $usuario): ?>
+            <tr>
+                <td><?= $usuario['id_usuario'] ?>
+                </td>
+                <td><?= htmlspecialchars($usuario['nombre_usuario']) ?>
+                </td>
+                <td><?= htmlspecialchars($usuario['email']) ?>
+                </td>
+                <td><?= htmlspecialchars($usuario['rol']) ?>
+                </td>
+                <td>
+                    <?php if ($usuario['foto']): ?>
+                    <img src="/uploads/usuarios/<?= htmlspecialchars($usuario['foto']) ?>"
+                        width="50" alt="Foto">
+                    <?php endif; ?>
+                </td>
+                <td><?= htmlspecialchars($usuario['DPI']) ?>
+                </td>
+                <td>
+                    <a
+                        href="editar_usuario.php?id_usuario=<?= $usuario['id_usuario'] ?>">Editar</a>
+                    |
+                    <a
+                        href="eliminar_usuario.php?id_usuario=<?= $usuario['id_usuario'] ?>">Eliminar</a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+            <?php else: ?>
+            <tr>
+                <td colspan="7">No se encontraron usuarios.</td>
+            </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
 </body>
 
 </html>
