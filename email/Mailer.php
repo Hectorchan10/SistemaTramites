@@ -21,13 +21,8 @@ class Mailer
         $this->mail->isSMTP();
         $this->mail->Host       = $_ENV['MAIL_HOST'];
         $this->mail->SMTPAuth   = true;
-<<<<<<< HEAD
-        $this->mail->Username   = '3f45ddbabed13d';
-        $this->mail->Password   = '577015870183c8';
-=======
         $this->mail->Username   = $_ENV['MAIL_USERNAME'];
         $this->mail->Password   = $_ENV['MAIL_PASSWORD'];
->>>>>>> 01226670e4f86f28764caf5d843c06659c1b6e88
         $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $this->mail->Port       = $_ENV['MAIL_PORT'];
         $this->mail->CharSet    = 'UTF-8';
