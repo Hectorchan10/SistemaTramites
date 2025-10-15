@@ -56,14 +56,5 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
         </a>
     </div>
 
-    <div class="sidebar-footer">
-        <div class="user-info">
-            <div class="user-avatar">U</div>
-            <div class="user-details">
-                <div class="user-name">Usuario</div>
-                <div class="user-email">usuario@email.com</div>
-            </div>
-        </div>
-    </div>
 </nav>
 </html>

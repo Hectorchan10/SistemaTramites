@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Por favor, completa todos los campos.';
     } else {
         // Consulta segura con prepared statements (MySQLi)
-        $stmt = $mysqli->prepare("SELECT id, email, password, rol FROM usuarios WHERE email = ?");
+        $stmt = $mysqli->prepare("SELECT id_usuario, email, password, rol FROM usuarios WHERE email = ?");
         if ($stmt) {
             $stmt->bind_param("s", $email);
             $stmt->execute();
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if ($usuario && $password === $usuario['password']) {
                 // Idealmente usar password_verify() si guardas contraseñas hasheadas
-                $_SESSION['usuario_id'] = $usuario['id'];
+                $_SESSION['usuario_id'] = $usuario['id_usuario'];
                 $_SESSION['email'] = $usuario['email'];
                 $_SESSION['rol'] = $usuario['rol'];
 

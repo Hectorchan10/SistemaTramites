@@ -1,9 +1,9 @@
 <?php
 
 $host = "localhost";
-$username = "root";          // Usuario por defecto en XAMPP
-$password = "";              // Contraseña vacía en XAMPP
-$dbname = "tramites";        // ← ¡Usa "tramites", no "344desarrollo"!
+$username = "admin_tramites";          // Usuario 
+$password = "DHS_tr@mites2025";              // Contraseña 
+$dbname = "sistema_tramites";        // ← Nombre de BDD
 
 $mysqli = new mysqli($host, $username, $password, $dbname);
 

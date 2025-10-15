@@ -21,8 +21,8 @@ class Mailer
         $this->mail->isSMTP();
         $this->mail->Host       = 'sandbox.smtp.mailtrap.io';
         $this->mail->SMTPAuth   = true;
-        $this->mail->Username   = '22610c67e30330';
-        $this->mail->Password   = 'b1775a48229a42';
+        $this->mail->Username   = '3f45ddbabed13d';
+        $this->mail->Password   = '577015870183c8';
         $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $this->mail->Port       = 2525;
         $this->mail->CharSet    = 'UTF-8';
