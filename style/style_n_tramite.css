@@ -52,6 +52,31 @@ header h1 a {
     gap: 25px;
 }
 
+/* Contenedor file */
+.file-upload {
+    display: none; /* Oculta el input original */
+}
+
+.file-upload-label {
+    display: inline-block;
+    padding: 10px 20px; /* Espaciado del botón */
+    background-color: #1e3a8a; /* Color de fondo */
+    color: white; /* Color del texto */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de puntero */
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+.file-upload-label:hover {
+    background-color: #3f6ed4; /* Color de fondo al pasar el mouse */
+}
+
+.file-upload-label:active {
+    background-color: #1a306f; /* Color de fondo al hacer clic */
+}
+
+/*=======================*/
+
 @media (max-width: 768px) {
     .form-group2,
     .form-group3 {

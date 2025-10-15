@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: #1e3a8a;
+}
+
+header {
+    padding: 20px;
+    color: white;  
+}
+a{
+    text-decoration: none;
+    color: white;
+    
+}
+
+header h1 a {
+    text-decoration: none;
+    color: white;
+}
+
+.form-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-container button {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 20px auto 0;
+    width: fit-content;
+}
+
+
+header {
+    padding: 20px;
+    color: white;
+}
+
+.header-content {
+    display: flex; /* Activa Flexbox */
+    justify-content: space-between; /* Espacio entre el h1 y los p */
+    align-items: center; /* Alineación vertical */
+}
+
+.links {
+    display: flex; /* Permite alinear los párrafos en fila */
+    gap: 15px; /* Espacio entre los enlaces */
+}
+
+h1 {
+    margin: 0; /* Elimina el margen del h1 */
+}
+
+p {
+    margin: 0; /* Elimina el margen de los párrafos */
+}

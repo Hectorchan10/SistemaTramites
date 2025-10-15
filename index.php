@@ -35,7 +35,7 @@
         <div class="hero-content">
           <h1>Trámites</h1>
           <p>Facilitando tus gestiones de manera rápida y eficiente</p>
-          <a href="#tramites" class="hero-btn">Consultar</a>
+          <a href="consultas.html" class="hero-btn">Consultar</a>
           <a href="nuevotramite.html" class="hero-btn">Nuevo Trámite</a>
         </div>
       </div>
