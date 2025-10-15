@@ -65,26 +65,45 @@ header h1 a {
 }
 
 
-header {
-    padding: 20px;
-    color: white;
+
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(var(--esp) * 1.2) var(--esp);
+  background: linear-gradient(90deg, var(--color-primario), var(--color-secundario));
+}
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
 }
 
-.header-content {
-    display: flex; /* Activa Flexbox */
-    justify-content: space-between; /* Espacio entre el h1 y los p */
-    align-items: center; /* Alineación vertical */
+nav a {
+  color: var(--color-texto);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background 0.3s ease, color 0.3s ease;
+  position: relative;
 }
 
-.links {
-    display: flex; /* Permite alinear los párrafos en fila */
-    gap: 15px; /* Espacio entre los enlaces */
+nav a:hover,
+nav a:focus {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--color-texto);
 }
-
-h1 {
-    margin: 0; /* Elimina el margen del h1 */
-}
-
-p {
-    margin: 0; /* Elimina el margen de los párrafos */
+/* ================== BOTÓN HAMBURGUESA ================== */
+.hamburger {
+  display: none; /* oculto en escritorio */
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: var(--color-texto);
+  cursor: pointer;
+  margin: 10px;
 }

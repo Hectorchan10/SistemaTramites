@@ -1,8 +1,57 @@
-<h2>Actualización de Cuenta - Sistema de Trámites</h2>
-<p>Hola <strong>{{email}}</strong>,</p>
-<p>Tu cuenta ha sido actualizada correctamente.</p>
-<p>Contraseña actual: <strong>{{password}}</strong></p>
-<p>Rol actual: <strong>{{rol}}</strong></p>
-<p>Si no realizaste esta actualización, por favor contacta al administrador del sistema.</p>
-<hr />
-<small>Este mensaje fue generado automáticamente, por favor no respondas a este correo.</small>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualización de Cuenta</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #1e3a8a;
+            margin-bottom: 15px;
+        }
+        p {
+            color: #333;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        strong {
+            color: #1e3a8a;
+        }
+        hr {
+            border: 1px solid #1e3a8a;
+            margin: 20px 0;
+        }
+        small {
+            color: #777;
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Actualización de Cuenta - Sistema de Trámites</h2>
+        <p>Hola <strong>{{email}}</strong>,</p>
+        <p>Tu cuenta ha sido actualizada correctamente.</p>
+        <p>Contraseña actual: <strong>{{password}}</strong></p>
+        <p>Rol actual: <strong>{{rol}}</strong></p>
+        <p>Si no realizaste esta actualización, por favor contacta al administrador del sistema.</p>
+        <hr />
+        <small>Este mensaje fue generado automáticamente, por favor no respondas a este correo.</small>
+    </div>
+</body>
+</html>
