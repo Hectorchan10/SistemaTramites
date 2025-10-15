@@ -23,7 +23,6 @@
         <button class="hamburger" aria-label="Menú">☰</button>
         <nav>
           <ul>
-            <li><a href="/index.php">Inicio</a></li>
             <li><a href="#contacto">Contacto</a></li>
             <li><a href="/views/login.php">Login</a></li>
           </ul>
