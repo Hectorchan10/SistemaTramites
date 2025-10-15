@@ -48,3 +48,8 @@ Este sistema busca **reducir la carga de trabajo manual**, **evitar duplicidad d
 git clone https://github.com/usuario/SistemaTramites.git
 ```
 
+2. **Instala las dependencias:**
+
+```bash
+composer install
+```
