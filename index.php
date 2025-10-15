@@ -99,12 +99,12 @@
       <div class="footer-content">
         <!-- Sobre Contramites -->
         <div class="footer-section">
-          <h3>DHC</h3>
+          <h3>DHS</h3>
           <p>Facilitando tus trámites de forma rápida y segura.</p>
           <div class="footer-social">
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/?locale=es_LA" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://x.com/?lang=es" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://x.com/?lang=es" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
           </div>
         </div>
@@ -113,10 +113,10 @@
         <div class="footer-section">
           <h3>Enlaces Rápidos</h3>
           <ul>
-            <li><a href="/index.html">Inicio</a></li>
+            <li><a href="/index.php">Inicio</a></li>
             <li><a href="#Tramites">Tramites</a></li>
             <li><a href="#contacto">Contacto</a></li>
-            <li><a href="/views/login.html">Login</a></li>
+            <li><a href="/views/login.php">Login</a></li>
           </ul>
         </div>
 
@@ -143,7 +143,7 @@
 
       <!-- Copyright -->
       <div class="footer-copyright">
-        <p>&copy; 2025 DHC Todos los derechos reservados.</p>
+        <p>&copy; 2025 DHS Todos los derechos reservados.</p>
       </div>
     </footer>
     <!--el footer -->
