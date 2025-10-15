@@ -37,9 +37,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Eliminar Usuario</title>
+    <link rel="stylesheet" href="/style/usuarios.css">
 </head>
 
 <body>
+    <?php include '../../sidebaradministrador.php'; ?>
+
+    <div class="contenido-principal">
     <h1>⚠️ Eliminar Usuario</h1>
     <p>¿Seguro que deseas eliminar a
         <?= htmlspecialchars($usuario['nombre_usuario']) ?>?
@@ -49,6 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit" name="confirmar" value="si">Sí, eliminar</button>
         <button type="submit" name="confirmar" value="no">Cancelar</button>
     </form>
+
+    </div>
 </body>
 
 </html>

@@ -86,46 +86,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Agregar Usuario</title>
+    <link rel="stylesheet" href="/style/usuarios.css">
 </head>
 
 <body>
-    <h1>Agregar Usuario</h1>
+    <?php include '../../sidebaradministrador.php'; ?>
 
-    <?php if ($error): ?>
-    <div style="color:red;"><?= htmlspecialchars($error) ?></div>
-    <?php endif; ?>
+    <div class="contenido-principal">
+        <h1>Agregar Usuario</h1>
 
-    <form method="POST" enctype="multipart/form-data">
-        <label>Nombre:</label><br>
-        <input type="text" name="nombre_usuario" required
-            value="<?= htmlspecialchars($_POST['nombre_usuario'] ?? '') ?>"><br><br>
+        <?php if ($error): ?>
+        <div style="color:red;"><?= htmlspecialchars($error) ?></div>
+        <?php endif; ?>
 
-        <label>Email:</label><br>
-        <input type="email" name="email" required
-            value="<?= htmlspecialchars($_POST['email'] ?? '') ?>"><br><br>
+        <form method="POST" enctype="multipart/form-data">
+            <label>Nombre:</label><br>
+            <input type="text" name="nombre_usuario" required
+                value="<?= htmlspecialchars($_POST['nombre_usuario'] ?? '') ?>"><br><br>
 
-        <label>Contraseña:</label><br>
-        <input type="password" name="password" required><br><br>
+            <label>Email:</label><br>
+            <input type="email" name="email" required
+                value="<?= htmlspecialchars($_POST['email'] ?? '') ?>"><br><br>
 
-        <label>Rol:</label><br>
-        <select name="rol" required>
-            <option value="admin" <?= (($_POST['rol'] ?? '') === 'admin') ? 'selected' : '' ?>>Admin
-            </option>
-            <option value="empleado" <?= (($_POST['rol'] ?? '') === 'empleado') ? 'selected' : '' ?>>Empleado
-            </option>
-        </select><br><br>
+            <label>Contraseña:</label><br>
+            <input type="password" name="password" required><br><br>
 
-        <label>DPI:</label><br>
-        <input type="text" name="DPI" maxlength="13" required
-            value="<?= htmlspecialchars($_POST['DPI'] ?? '') ?>"><br><br>
+            <label>Rol:</label><br>
+            <select name="rol" required>
+                <option value="admin" <?= (($_POST['rol'] ?? '') === 'admin') ? 'selected' : '' ?>>Admin
+                </option>
+                <option value="empleado" <?= (($_POST['rol'] ?? '') === 'empleado') ? 'selected' : '' ?>>Empleado
+                </option>
+            </select><br><br>
 
-        <label>Foto (opcional):</label><br>
-        <input type="file" name="foto" accept="image/*"><br><br>
+            <label>DPI:</label><br>
+            <input type="text" name="DPI" maxlength="13" required
+                value="<?= htmlspecialchars($_POST['DPI'] ?? '') ?>"><br><br>
 
-        <button type="submit">Agregar Usuario</button>
-    </form>
-    <br>
-    <a href="usuarios.php">← Volver a la lista de usuarios</a>
-</body>
+            <label>Foto (opcional):</label><br>
+            <input type="file" name="foto" accept="image/*"><br><br>
+
+            <button type="submit">Agregar Usuario</button>
+        </form>
+        <br>
+        <a href="usuarios.php">← Volver a la lista de usuarios</a>
+    </div>    
+    </body>
 
 </html>

@@ -12,7 +12,7 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
     </div>
 
     <div class="nav-menu">
-        <a href="dashboard.php"
+        <a href="/views/admin/dashboard.php"
             class="nav-item <?php echo ($current_page == 'dashboard') ? 'active' : ''; ?>">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -21,7 +21,7 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
             Tablero
         </a>
 
-        <a href="tipos.php"
+        <a href="/views/admin/tipos.php"
             class="nav-item <?php echo ($current_page == 'tipos') ? 'active' : ''; ?>">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -30,7 +30,7 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
             Tipos de Tramites
         </a>
 
-        <a href="estados.php"
+        <a href="/views/admin/estados.php"
             class="nav-item <?php echo ($current_page == 'estados') ? 'active' : ''; ?>">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -39,7 +39,7 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
             Estados de Tramites
         </a>
 
-        <a href="tramites.php"
+        <a href="/views/admin/tramites.php"
             class="nav-item <?php echo ($current_page == 'tramites') ? 'active' : ''; ?>">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -48,7 +48,7 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
             Tramites
         </a>
 
-        <a href="areas.php"
+        <a href="/views/admin/areas.php"
             class="nav-item <?php echo ($current_page == 'areas') ? 'active' : ''; ?>">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -57,7 +57,7 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
             Areas
         </a>
 
-        <a href="usuario/usuarios.php"
+        <a href="/views/admin/usuario/usuarios.php"
             class="nav-item <?php echo ($current_page == 'usuarios') ? 'active' : ''; ?>">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
