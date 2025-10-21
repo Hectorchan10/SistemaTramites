@@ -35,8 +35,8 @@
         <div class="hero-content">
           <h1>Trámites</h1>
           <p>Facilitando tus gestiones de manera rápida y eficiente</p>
-          <a href="consultas.html" class="hero-btn">Consultar</a>
-          <a href="nuevotramite.html" class="hero-btn">Nuevo Trámite</a>
+          <a href="views/consultas.php" class="hero-btn">Consultar</a>
+          <a href="views/nuevotramite.php" class="hero-btn">Nuevo Trámite</a>
         </div>
       </div>
       <!-- el baner -->
