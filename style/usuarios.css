@@ -1,143 +1,212 @@
+/* Contenedor principal que evita el sidebar (25%) */
+.contenido-principal {
+  margin-left: 26%;
+  width: calc(100% - 26%);
+  padding: 20px;
+  box-sizing: border-box;
+}
 
-    /* Contenedor principal que evita el sidebar (25%) */
-    .contenido-principal {
-        margin-left: 26%;
-        width: calc(100% - 26%);
-        padding: 20px;
-        box-sizing: border-box;
-    }
+/* Estilos generales para mejorar la apariencia */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
 
-    /* Estilos generales para mejorar la apariencia */
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f8f9fa;
-        margin: 0;
-        padding: 0;
-    }
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
 
-    h1 {
-        color: #333;
-        margin-bottom: 20px;
-    }
+a {
+  text-decoration: none;
+  color: #007bff;
+}
 
-    a {
-        text-decoration: none;
-        color: #007bff;
-    }
+a:hover {
+  text-decoration: underline;
+}
 
-    a:hover {
-        text-decoration: underline;
-    }
+/* Mensajes de éxito */
+.mensaje-exito {
+  padding: 10px;
+  background-color: #d4edda;
+  color: #155724;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  border: 1px solid #c3e6cb;
+}
 
-    /* Mensajes de éxito */
-    .mensaje-exito {
-        padding: 10px;
-        background-color: #d4edda;
-        color: #155724;
-        border-radius: 5px;
-        margin-bottom: 20px;
-        border: 1px solid #c3e6cb;
-    }
+/* Mensajes de error */
+.mensaje-error {
+  padding: 10px;
+  background-color: #f8d7da;
+  color: #721c24;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  border: 1px solid #f5c6cb;
+}
 
-    /* Mensajes de error */
-    .mensaje-error {
-        padding: 10px;
-        background-color: #f8d7da;
-        color: #721c24;
-        border-radius: 5px;
-        margin-bottom: 20px;
-        border: 1px solid #f5c6cb;
-    }
+/* Tabla de usuarios */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 15px;
+}
 
-    /* Tabla de usuarios */
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        background-color: white;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        margin-top: 15px;
-    }
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
 
-    th, td {
-        padding: 12px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
+th {
+  background-color: #f1f1f1;
+  font-weight: bold;
+}
 
-    th {
-        background-color: #f1f1f1;
-        font-weight: bold;
-    }
+tr:hover {
+  background-color: #f9f9f9;
+}
 
-    tr:hover {
-        background-color: #f9f9f9;
-    }
+img {
+  border-radius: 4px;
+}
 
-    img {
-        border-radius: 4px;
-    }
+/* Formularios */
+form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+}
 
-    /* Formularios */
-    form {
-        background-color: white;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        max-width: 600px;
-    }
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+  color: #555;
+}
 
-    label {
-        display: block;
-        margin-top: 10px;
-        font-weight: bold;
-        color: #555;
-    }
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='file'],
+select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
 
-    input[type="text"],
-    input[type="email"],
-    input[type="password"],
-    input[type="file"],
-    select {
-        width: 100%;
-        padding: 8px;
-        margin-top: 5px;
-        margin-bottom: 15px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
 
-    button {
-        background-color: #007bff;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-    }
+button:hover {
+  background-color: #0056b3;
+}
 
-    button:hover {
-        background-color: #0056b3;
-    }
+/* Botones de acción en tabla */
+.acciones a {
+  margin-right: 8px;
+  color: #007bff;
+}
 
-    /* Botones de acción en tabla */
-    .acciones a {
-        margin-right: 8px;
-        color: #007bff;
-    }
+/* Sección de filtros */
+.filtros-container {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
 
-    /* Botón de agregar usuario */
-    .btn-agregar {
-        display: inline-block;
-        margin-bottom: 20px;
-        padding: 8px 12px;
-        background-color: #28a745;
-        color: white;
-        border-radius: 4px;
-    }
+.filtros-form {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
 
-    .btn-agregar:hover {
-        background-color: #218838;
-        text-decoration: none;
-    }
+.filtro-grupo {
+  flex: 1;
+  min-width: 200px;
+}
+
+.filtro-grupo input[type='text'],
+.filtro-grupo select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.btn-buscar {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  height: 38px;
+}
+
+.btn-buscar:hover {
+  background-color: #0069d9;
+}
+
+.btn-limpiar {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: #6c757d;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  height: 38px;
+  box-sizing: border-box;
+}
+
+.btn-limpiar:hover {
+  background-color: #5a6268;
+  color: white;
+  text-decoration: none;
+}
+
+.acciones-superiores {
+  margin: 20px 0;
+}
+
+/* Botón de agregar usuario */
+.btn-agregar {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.btn-agregar:hover {
+  background-color: #218838;
+  text-decoration: none;
+}

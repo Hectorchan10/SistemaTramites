@@ -6,7 +6,7 @@ if (!$id) {
     die('ID no válido');
 }
 
-$stmt = $mysqli->prepare("SELECT id_usuario, nombre_usuario, email FROM usuarios WHERE id_usuario=?");
+$stmt = $mysqli->prepare("SELECT id_usuario, nombre, correo, activo FROM tbl_usuario WHERE id_usuario=?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
 $usuario = $stmt->get_result()->fetch_assoc();
@@ -17,7 +17,7 @@ if (!$usuario) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_POST['confirmar'] === 'si') {
-        $stmt = $mysqli->prepare("DELETE FROM usuarios WHERE id_usuario=?");
+        $stmt = $mysqli->prepare("UPDATE tbl_usuario SET activo = 0 WHERE id_usuario = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $stmt->close();
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="contenido-principal">
     <h1>⚠️ Eliminar Usuario</h1>
     <p>¿Seguro que deseas eliminar a
-        <?= htmlspecialchars($usuario['nombre_usuario']) ?>?
+        <?= htmlspecialchars($usuario['nombre']) ?>?
     </p>
 
     <form method="POST">

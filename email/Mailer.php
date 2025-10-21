@@ -9,7 +9,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 class Mailer
 {
-    private PHPMailer $mail;
+    private $mail;
 
     public function __construct()
     {
@@ -35,6 +35,11 @@ class Mailer
     {
         try {
             $this->mail->clearAllRecipients();
+            $this->mail->clearAttachments();
+
+            if (!filter_var($destinatario, FILTER_VALIDATE_EMAIL)) {
+                return "Error al enviar: destinatario inválido";
+            }
             $this->mail->addAddress($destinatario);
             $this->mail->Subject = $asunto;
 

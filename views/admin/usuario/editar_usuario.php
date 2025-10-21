@@ -11,7 +11,7 @@ if (!$id) {
 }
 
 // Cargar usuario
-$stmt = $mysqli->prepare("SELECT * FROM usuarios WHERE id_usuario = ?");
+$stmt = $mysqli->prepare("SELECT * FROM tbl_usuario WHERE id_usuario = ?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
 $usuario = $stmt->get_result()->fetch_assoc();
@@ -20,46 +20,92 @@ if (!$usuario) {
     die('Usuario no encontrado');
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nombre = trim($_POST['nombre_usuario'] ?? '');
-    $email = filter_var(trim($_POST['email'] ?? ''), FILTER_SANITIZE_EMAIL);
-    $password = trim($_POST['password'] ?? '');
-    $rol = trim($_POST['rol'] ?? '');
-    $DPI = trim($_POST['DPI'] ?? '');
-    $foto = $_FILES['foto']['name'] ?? $usuario['foto'];
+// Cargar roles y áreas
+$roles = [];
+$areas = [];
+$resRoles = $mysqli->query("SELECT id_rol, nombre FROM tbl_rol ORDER BY nombre");
+if ($resRoles) {
+    $roles = $resRoles->fetch_all(MYSQLI_ASSOC);
+}
+$resAreas = $mysqli->query("SELECT id_area, nombre FROM tbl_area WHERE activo = TRUE ORDER BY nombre");
+if ($resAreas) {
+    $areas = $resAreas->fetch_all(MYSQLI_ASSOC);
+}
 
-    if (empty($nombre) || empty($email) || empty($rol) || empty($DPI)) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nombre = trim($_POST['nombre'] ?? '');
+    $apellido = trim($_POST['apellido'] ?? '');
+    $correo = filter_var(trim($_POST['correo'] ?? ''), FILTER_SANITIZE_EMAIL);
+    $password = trim($_POST['password'] ?? '');
+    $dpi = trim($_POST['dpi'] ?? '');
+    $id_rol = intval($_POST['id_rol'] ?? 0);
+    $id_area = intval($_POST['id_area'] ?? 0);
+
+    // Área opcional
+    $id_area = $id_area > 0 ? $id_area : null;
+
+    if (empty($nombre) || empty($correo) || empty($dpi) || !$id_rol) {
         $error = 'Todos los campos obligatorios deben completarse.';
     } else {
-        // Subir nueva foto si existe
-        if ($_FILES['foto']['tmp_name'] ?? false) {
-            $rutaDestino = __DIR__ . '/../../../uploads/usuarios/' . basename($foto);
-            move_uploaded_file($_FILES['foto']['tmp_name'], $rutaDestino);
-        }
-
         if ($password) {
             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-            $stmt = $mysqli->prepare("UPDATE usuarios SET nombre_usuario=?, email=?, password=?, rol=?, foto=?, DPI=? WHERE id_usuario=?");
-            $stmt->bind_param("ssssssi", $nombre, $email, $passwordHash, $rol, $foto, $DPI, $id);
+            $stmt = $mysqli->prepare("
+                UPDATE tbl_usuario 
+                SET nombre=?, apellido=?, correo=?, password=?, dpi=?, id_rol=?, id_area=? 
+                WHERE id_usuario=?
+            ");
+            // tipos: s(nombre), s(apellido), s(correo), s(password), s(dpi), i(id_rol), i(id_area), i(id)
+            $stmt->bind_param("sssssiii", $nombre, $apellido, $correo, $passwordHash, $dpi, $id_rol, $id_area, $id);
         } else {
-            $stmt = $mysqli->prepare("UPDATE usuarios SET nombre_usuario=?, email=?, rol=?, foto=?, DPI=? WHERE id_usuario=?");
-            $stmt->bind_param("sssssi", $nombre, $email, $rol, $foto, $DPI, $id);
+            $stmt = $mysqli->prepare("
+                UPDATE tbl_usuario 
+                SET nombre=?, apellido=?, correo=?, dpi=?, id_rol=?, id_area=? 
+                WHERE id_usuario=?
+            ");
+            // tipos: s(nombre), s(apellido), s(correo), s(dpi), i(id_rol), i(id_area), i(id)
+            $stmt->bind_param("ssssiii", $nombre, $apellido, $correo, $dpi, $id_rol, $id_area, $id);
         }
 
         if ($stmt->execute()) {
             $stmt->close();
-            $exito = 'Usuario actualizado correctamente';
+
+            // Obtener nombre del rol
+            $rolNombre = '';
+            foreach ($roles as $rolItem) {
+                if ((int)$rolItem['id_rol'] === (int)$id_rol) {
+                    $rolNombre = $rolItem['nombre'];
+                    break;
+                }
+            }
+
+            $datosCorreo = [
+                'email' => $correo,
+                'rol' => $rolNombre,
+                // Enviar el texto de la contraseña solo si fue cambiada; de lo contrario indicar "Sin cambios"
+                'password' => ($password !== '' ? $password : 'Sin cambios')
+            ];
 
             // Enviar correo
             $mailer = new Mailer();
-            $mailer->enviarCorreo(
-                $email,
+            $mailResult = $mailer->enviarCorreo(
+                $correo,
                 'Actualización de cuenta - Sistema de Trámites',
                 __DIR__ . '/../../../templates/correo_actualizacion.html',
-                ['nombre' => $nombre, 'email' => $email, 'rol' => $rol, 'password' => $password]
+                $datosCorreo
             );
 
-            header("Location: usuarios.php?mensaje=Usuario actualizado correctamente");
+            // Mensaje según resultado del correo
+            if ($mailResult !== true) {
+                // Registrar detalle del fallo de correo sin interrumpir el flujo
+                if (is_string($mailResult)) {
+                    error_log('[MAIL] Error al enviar correo de actualización: ' . $mailResult);
+                }
+                $mensaje = 'Usuario actualizado. Aviso: no se pudo enviar el correo de notificación.';
+            } else {
+                $mensaje = 'Usuario actualizado correctamente (correo enviado)';
+            }
+
+            header("Location: usuarios.php?mensaje=" . urlencode($mensaje));
             exit;
         } else {
             $error = 'Error al actualizar usuario: ' . $stmt->error;
@@ -70,13 +116,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <title>Editar Usuario</title>
     <link rel="stylesheet" href="/style/usuarios.css">
 </head>
-
 <body>
     <?php include '../../sidebaradministrador.php'; ?>
 
@@ -87,43 +131,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div style="color:red;"><?= htmlspecialchars($error) ?></div>
         <?php endif; ?>
 
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST">
             <label>Nombre:</label><br>
-            <input type="text" name="nombre_usuario"
-                value="<?= htmlspecialchars($usuario['nombre_usuario']) ?>"
-                required><br><br>
+            <input type="text" name="nombre" value="<?= htmlspecialchars($usuario['nombre']) ?>" required><br><br>
+
+            <label>Apellido:</label><br>
+            <input type="text" name="apellido" value="<?= htmlspecialchars($usuario['apellido']) ?>"><br><br>
 
             <label>Email:</label><br>
-            <input type="email" name="email"
-                value="<?= htmlspecialchars($usuario['email']) ?>"
-                required><br><br>
+            <input type="email" name="correo" value="<?= htmlspecialchars($usuario['correo']) ?>" required><br><br>
 
             <label>Nueva Contraseña (dejar en blanco para no cambiar):</label><br>
             <input type="password" name="password"><br><br>
 
             <label>Rol:</label><br>
-            <select name="rol" required>
-                <option value="admin" <?= $usuario['rol'] === 'admin' ? 'selected' : '' ?>>Admin
+            <select name="id_rol" required>
+                <option value="">Seleccione un rol</option>
+                <?php foreach ($roles as $rol): ?>
+                <option value="<?= $rol['id_rol'] ?>" <?= ((int)$usuario['id_rol'] === (int)$rol['id_rol']) ? 'selected' : '' ?>>
+                    <?= htmlspecialchars($rol['nombre']) ?>
                 </option>
-                <option value="empleado" <?= $usuario['rol'] === 'empleado' ? 'selected' : '' ?>>Empleado
+                <?php endforeach; ?>
+            </select><br><br>
+
+            <label>Área:</label><br>
+            <select name="id_area">
+                <option value="0" <?= is_null($usuario['id_area']) ? 'selected' : '' ?>>Sin área</option>
+                <?php foreach ($areas as $area): ?>
+                <option value="<?= $area['id_area'] ?>" <?= ((int)$usuario['id_area'] === (int)$area['id_area']) ? 'selected' : '' ?>>
+                    <?= htmlspecialchars($area['nombre']) ?>
                 </option>
+                <?php endforeach; ?>
             </select><br><br>
 
             <label>DPI:</label><br>
-            <input type="text" name="DPI"
-                value="<?= htmlspecialchars($usuario['DPI']) ?>"
-                maxlength="13" required><br><br>
-
-            <label>Foto:</label><br>
-            <input type="file" name="foto" accept="image/*"><br><br>
-            <?php if ($usuario['foto']): ?>
-            <img src="/uploads/usuarios/<?= htmlspecialchars($usuario['foto']) ?>"
-                width="50">
-            <?php endif; ?><br><br>
+            <input type="text" name="dpi" value="<?= htmlspecialchars($usuario['dpi']) ?>" maxlength="15" required><br><br>
 
             <button type="submit">Actualizar Usuario</button>
         </form>
+        <br>
+        <a href="usuarios.php">← Volver a la lista de usuarios</a>
     </div>
 </body>
-
 </html>
