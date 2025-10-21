@@ -1,212 +1,357 @@
-/* Contenedor principal que evita el sidebar (25%) */
-.contenido-principal {
-  margin-left: 26%;
-  width: calc(100% - 26%);
-  padding: 20px;
+/* ===== VARIABLES GLOBALES ===== */
+:root {
+  --color-primario: #1e3a8a;
+  --color-secundario: #3b82f6;
+  --color-texto: #fffefe;
+  --color-fondo: #f8fafc;
+  --color-borde: #cbd5e1;
+  --color-hover: #e2e8f0;
+  --color-error: #dc2626;
+  --color-exito: #10b981;
+  --font-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-/* Estilos generales para mejorar la apariencia */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
-  margin: 0;
-  padding: 0;
+  font-family: var(--font-primary);
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6;
 }
 
-h1 {
-  color: #333;
-  margin-bottom: 20px;
+/* ===== SIDEBAR (referencia, no se modifica aquí) ===== */
+
+/* ===== CONTENIDO PRINCIPAL ===== */
+.contenido-principal {
+  margin-left: 26%;
+  padding: 2rem;
+
+  background-color: var(--color-fondo);
+  transition: all 0.3s ease;
 }
 
-a {
+/* ===== ENCABEZADOS ===== */
+.contenido-principal h1 {
+  color: var(--color-primario);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--color-secundario);
+  text-align: center;
+}
+
+/* ===== FORMULARIOS (AGREGAR Y EDITAR USUARIOS) ===== */
+form {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 1rem;
+}
+
+.form-field {
+  margin-bottom: 1.5rem;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--color-primario);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.form-field input[type="text"],
+.form-field input[type="email"],
+.form-field input[type="password"],
+.form-field select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--color-borde);
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-color: #ffffff;
+  color: #000000; /* ← Texto negro en campos */
+}
+
+.form-field input:focus,
+.form-field select:focus {
+  outline: none;
+  border-color: var(--color-secundario);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* Botones Cancelar y Guardar */
+.form-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.btn-cancelar {
+  background-color: #6b7280;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
   text-decoration: none;
-  color: #007bff;
+  text-align: center;
 }
 
-a:hover {
-  text-decoration: underline;
+.btn-cancelar:hover {
+  background-color: #4b5563;
 }
 
-/* Mensajes de éxito */
+.btn-guardar {
+  background-color: var(--color-primario);
+  color: var(--color-texto);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.btn-guardar:hover {
+  background-color: #1e40af;
+}
+
+
+/* Botones Cancelar y Guardar */
+.form-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.btn-cancelar {
+  background-color: #6b7280;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn-cancelar:hover {
+  background-color: #4b5563;
+}
+
+.btn-guardar {
+  background-color: var(--color-primario);
+  color: var(--color-texto);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.btn-guardar:hover {
+  background-color: #1e40af;
+}
+
+/* ===== MENSAJES DE ERROR Y ÉXITO ===== */
 .mensaje-exito {
-  padding: 10px;
-  background-color: #d4edda;
-  color: #155724;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  border: 1px solid #c3e6cb;
+  background-color: var(--color-exito);
+  color: white;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 600;
 }
 
-/* Mensajes de error */
-.mensaje-error {
-  padding: 10px;
-  background-color: #f8d7da;
-  color: #721c24;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  border: 1px solid #f5c6cb;
+div[style*="color:red"] {
+  background-color: var(--color-error);
+  color: white;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 600;
 }
 
-/* Tabla de usuarios */
+/* ===== TABLAS ===== */
 table {
   width: 100%;
   border-collapse: collapse;
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-top: 15px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
 }
 
-th,
-td {
-  padding: 12px;
+table thead {
+  background-color: var(--color-primario);
+  color: var(--color-texto);
+}
+
+table th,
+table td {
+  padding: 1rem;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--color-borde);
+  color: #000000; /* ← Texto negro en la tabla */
 }
 
-th {
-  background-color: #f1f1f1;
-  font-weight: bold;
+table tbody tr:hover {
+  background-color: var(--color-hover);
 }
 
-tr:hover {
-  background-color: #f9f9f9;
+table th {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-img {
-  border-radius: 4px;
-}
-
-/* Formularios */
-form {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-}
-
-label {
-  display: block;
-  margin-top: 10px;
-  font-weight: bold;
-  color: #555;
-}
-
-input[type='text'],
-input[type='email'],
-input[type='password'],
-input[type='file'],
-select {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-/* Botones de acción en tabla */
-.acciones a {
-  margin-right: 8px;
-  color: #007bff;
-}
-
-/* Sección de filtros */
+/* ===== FILTROS Y BOTONES SUPERIORES ===== */
 .filtros-container {
-  background-color: #fff;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
 }
 
 .filtros-form {
   display: flex;
-  gap: 15px;
+  gap: 1rem;
   flex-wrap: wrap;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .filtro-grupo {
-  flex: 1;
-  min-width: 200px;
+  flex: 1 1 200px;
 }
 
-.filtro-grupo input[type='text'],
+.filtro-grupo input,
 .filtro-grupo select {
   width: 100%;
-  padding: 8px 12px;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  font-size: 14px;
+  padding: 0.75rem;
+  border: 2px solid var(--color-borde);
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.btn-buscar,
+.btn-limpiar {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
 }
 
 .btn-buscar {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  height: 38px;
+  background-color: var(--color-secundario);
+  color: var(--color-texto);
 }
 
 .btn-buscar:hover {
-  background-color: #0069d9;
+  background-color: #2563eb;
 }
 
 .btn-limpiar {
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 16px;
-  background-color: #6c757d;
+  background-color: #6b7280;
   color: white;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 14px;
-  height: 38px;
-  box-sizing: border-box;
 }
 
 .btn-limpiar:hover {
-  background-color: #5a6268;
-  color: white;
-  text-decoration: none;
+  background-color: #4b5563;
 }
 
 .acciones-superiores {
-  margin: 20px 0;
+  margin-bottom: 1.5rem;
+  text-align: right;
 }
 
-/* Botón de agregar usuario */
 .btn-agregar {
   display: inline-block;
-  padding: 8px 16px;
-  background-color: #28a745;
-  color: white;
-  border-radius: 4px;
+  background-color: var(--color-primario);
+  color: var(--color-texto);
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
   text-decoration: none;
-  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.2s;
 }
 
 .btn-agregar:hover {
-  background-color: #218838;
+  background-color: #1e40af;
+}
+
+/* ===== PAGINACIÓN ===== */
+.paginacion {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+  gap: 0.5rem;
+}
+
+.paginacion a,
+.paginacion span {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-borde);
+  border-radius: 4px;
   text-decoration: none;
+  color: var(--color-primario);
+  transition: background-color 0.2s;
+}
+
+.paginacion a:hover {
+  background-color: var(--color-secundario);
+  color: white;
+}
+
+.paginacion .actual {
+  background-color: var(--color-primario);
+  color: white;
+  border-color: var(--color-primario);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .contenido-principal {
+    margin-left: 0;
+    padding: 1rem;
+  }
+
+  form {
+    padding: 1.5rem;
+    max-width: 100%;
+  }
+
+  table {
+    font-size: 0.85rem;
+  }
+
+  .filtros-form {
+    flex-direction: column;
+  }
 }

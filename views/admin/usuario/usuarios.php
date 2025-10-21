@@ -79,7 +79,7 @@ $stmt->close();
             <form method="GET" action="" class="filtros-form">
                 <div class="filtro-grupo">
                     <input type="text" name="busqueda" placeholder="Buscar por nombre, correo o DPI" 
-                           value="<?= isset($_GET['busqueda']) ? htmlspecialchars($_GET['busqueda']) : '' ?>">
+                        value="<?= isset($_GET['busqueda']) ? htmlspecialchars($_GET['busqueda']) : '' ?>">
                 </div>
                 <div class="filtro-grupo">
                     <select name="estado">
