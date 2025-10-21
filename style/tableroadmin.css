@@ -1,0 +1,61 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.tarjeta-mensaje {
+    background: linear-gradient(150deg, #079b1f 50%, #35f03e 100%);
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: left;
+    margin: 10px;
+    width: 74%;
+    height: 100px;
+    position: absolute;
+    margin-left: 25.5%;
+}
+.tablero{
+    display: flex;
+    justify-content: space-around;
+    margin-left: 5%;
+    position: relative;
+    top: 120px;
+}
+
+
+
+.tarjeta-usuarios {
+    background: linear-gradient(150deg, #380bb1 50%, #5422db 100%);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    margin: 10px;
+
+    width: 300px;
+    height: 150px;
+}
+.tarjeta-tramites {
+    background: linear-gradient(150deg, rgb(241, 125, 30) 50%, rgb(255, 51, 0) 100%);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    margin: 10px;
+
+    width: 300px;
+    height: 150px;
+}
+
+.tarjeta-areas {
+    background: linear-gradient(150deg, #0bb17f 50%, #0ce64d 100%);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    margin: 10px;
+
+    width: 300px;
+    height: 150px;
+}
