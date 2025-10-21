@@ -153,6 +153,13 @@ $stmt->close();
         (function () {
             var el = document.getElementById('flash-message');
             if (!el) return;
+            
+            // Remove the mensaje parameter from URL without page reload
+            if (window.history.replaceState && window.location.search.includes('mensaje=')) {
+                var cleanUrl = window.location.pathname + window.location.search.replace(/[&?]mensaje=[^&]+/, '').replace(/^&/, '?');
+                window.history.replaceState({}, document.title, cleanUrl);
+            }
+            
             setTimeout(function () {
                 try {
                     el.style.transition = 'opacity 350ms ease';
