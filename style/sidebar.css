@@ -35,6 +35,13 @@ body {
     top: 0;
     height: 100vh;
     z-index: 1000;
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+}
+
+/* Estado oculto del sidebar */
+.sidebar.hidden {
+    transform: translateX(-100%);
 }
 
 /* ============================================ */
@@ -226,6 +233,52 @@ body {
 }
 
 /* ============================================ */
+/* BOTÓN HAMBURGUESA */
+/* ============================================ */
+
+.hamburger-menu {
+    display: none;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1001;
+    background: var(--color-primario);
+    color: var(--color-texto);
+    border: none;
+    padding: 0.75rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.hamburger-menu:hover {
+    background: var(--color-secundario);
+    transform: scale(1.05);
+}
+
+.hamburger-menu.active {
+    background: var(--color-secundario);
+}
+
+/* Overlay para móviles */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* ============================================ */
 /* RESPONSIVE DESIGN */
 /* ============================================ */
 
@@ -234,7 +287,7 @@ body {
     .sidebar {
         width: 30%;
     }
-    
+
     .main-content {
         margin-left: 30%;
         width: 70%;
@@ -243,30 +296,37 @@ body {
 
 /* Móviles */
 @media (max-width: 768px) {
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
+    .hamburger-menu {
+        display: block;
     }
-    
+
+    .sidebar {
+        width: 280px;
+        z-index: 1000;
+    }
+
+    .sidebar.hidden {
+        transform: translateX(-100%);
+    }
+
     .main-content {
         margin-left: 0;
         width: 100%;
         padding: 1.5rem;
     }
-    
+
     .sidebar-header h1 {
         font-size: 1.25rem;
     }
-    
+
     .nav-item {
         padding: 0.75rem 1rem;
     }
-    
+
     .nav-item:hover {
         padding-left: 1.5rem;
     }
-    
+
     .page-header h1 {
         font-size: 1.75rem;
     }

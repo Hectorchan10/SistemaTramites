@@ -5,7 +5,16 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
 
 <html>
 <link rel="stylesheet" href="/style/sidebar.css">
-<nav class="sidebar">
+
+<!-- Botón hamburguesa -->
+<button class="hamburger-menu" id="hamburger-menu">
+    ☰
+</button>
+
+<!-- Overlay para móviles -->
+<div class="overlay" id="overlay"></div>
+
+<nav class="sidebar" id="sidebar">
     <div class="sidebar-header">
         <h1>Panel administrativo</h1>
         <p>Panel de Navegación</p>
@@ -79,5 +88,43 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
     </div>
 
 </nav>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+
+    // Función para alternar el sidebar
+    function toggleSidebar() {
+        sidebar.classList.toggle('hidden');
+        overlay.classList.toggle('active');
+        hamburgerMenu.classList.toggle('active');
+    }
+
+    // Event listener para el botón hamburguesa
+    hamburgerMenu.addEventListener('click', toggleSidebar);
+
+    // Event listener para el overlay
+    overlay.addEventListener('click', toggleSidebar);
+
+    // Cerrar sidebar al hacer click en un enlace (para móviles)
+    const navItems = sidebar.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        item.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                toggleSidebar();
+            }
+        });
+    });
+
+    // Cerrar sidebar al presionar Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !sidebar.classList.contains('hidden')) {
+            toggleSidebar();
+        }
+    });
+});
+</script>
 
 </html>

@@ -137,63 +137,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h1>Agregar Usuario</h1>
 
         <?php if ($error): ?>
-            <div style="color:red;"><?= htmlspecialchars($error) ?></div>
+            <div class="mensaje-error"><?= htmlspecialchars($error) ?></div>
         <?php endif; ?>
 
-        <form method="POST">
-            <div class="form-field">
-                <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" required value="<?= htmlspecialchars($_POST['nombre'] ?? '') ?>">
-            </div>
+        <form method="POST" class="formulario">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" required value="<?= htmlspecialchars($_POST['nombre'] ?? '') ?>">
 
-            <div class="form-field">
-                <label for="apellido">Apellido</label>
-                <input type="text" id="apellido" name="apellido" value="<?= htmlspecialchars($_POST['apellido'] ?? '') ?>">
-            </div>
+            <label for="apellido">Apellido</label>
+            <input type="text" id="apellido" name="apellido" value="<?= htmlspecialchars($_POST['apellido'] ?? '') ?>">
 
-            <div class="form-field">
-                <label for="correo">Email</label>
-                <input type="email" id="correo" name="correo" required value="<?= htmlspecialchars($_POST['correo'] ?? '') ?>">
-            </div>
+            <label for="correo">Email</label>
+            <input type="email" id="correo" name="correo" required value="<?= htmlspecialchars($_POST['correo'] ?? '') ?>">
 
-            <div class="form-field">
-                <label for="password">Contraseña</label>
-                <input type="password" id="password" name="password" required>
-            </div>
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" name="password" required>
 
-            <div class="form-field">
-                <label for="id_rol">Rol</label>
-                <select id="id_rol" name="id_rol" required>
-                    <option value="">Seleccione un rol</option>
-                    <?php foreach ($roles as $rol): ?>
-                        <option value="<?= $rol['id_rol'] ?>" <?= ((int)($_POST['id_rol'] ?? 0) === (int)$rol['id_rol']) ? 'selected' : '' ?>>
-                            <?= htmlspecialchars($rol['nombre']) ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
+            <label for="id_rol">Rol</label>
+            <select id="id_rol" name="id_rol" required>
+                <option value="">Seleccione un rol</option>
+                <?php foreach ($roles as $rol): ?>
+                    <option value="<?= $rol['id_rol'] ?>" <?= ((int)($_POST['id_rol'] ?? 0) === (int)$rol['id_rol']) ? 'selected' : '' ?>>
+                        <?= htmlspecialchars($rol['nombre']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
 
-            <div class="form-field">
-                <label for="id_area">Área</label>
-                <select id="id_area" name="id_area">
-                    <option value="0">Sin área</option>
-                    <?php foreach ($areas as $area): ?>
-                        <option value="<?= $area['id_area'] ?>" <?= ((int)($_POST['id_area'] ?? 0) === (int)$area['id_area']) ? 'selected' : '' ?>>
-                            <?= htmlspecialchars($area['nombre']) ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
+            <label for="id_area">Área</label>
+            <select id="id_area" name="id_area">
+                <option value="0">Sin área</option>
+                <?php foreach ($areas as $area): ?>
+                    <option value="<?= $area['id_area'] ?>" <?= ((int)($_POST['id_area'] ?? 0) === (int)$area['id_area']) ? 'selected' : '' ?>>
+                        <?= htmlspecialchars($area['nombre']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
 
-            <div class="form-field">
-                <label for="dpi">DPI</label>
-                <input type="text" id="dpi" name="dpi" maxlength="15" required value="<?= htmlspecialchars($_POST['dpi'] ?? '') ?>">
-            </div>
+            <label for="dpi">DPI</label>
+            <input type="text" id="dpi" name="dpi" maxlength="15" required value="<?= htmlspecialchars($_POST['dpi'] ?? '') ?>">
 
-            <div class="form-buttons">
-                <a href="usuarios.php" class="btn-cancelar">Cancelar</a>
-                <button type="submit" class="btn-guardar">Agregar Usuario</button>
-            </div>
+            <button type="submit" class="btn-agregar">Agregar Usuario</button>
+            <a href="usuarios.php" class="btn-cancelar">Cancelar</a>
         </form>
     </div>
 </body>

@@ -128,63 +128,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h1>Editar Usuario</h1>
 
         <?php if ($error): ?>
-            <div style="color:red;"><?= htmlspecialchars($error) ?></div>
+            <div class="mensaje-error"><?= htmlspecialchars($error) ?></div>
         <?php endif; ?>
 
-        <form method="POST">
-            <div class="form-field">
-                <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" value="<?= htmlspecialchars($usuario['nombre']) ?>" required>
-            </div>
+        <form method="POST" class="formulario">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" value="<?= htmlspecialchars($usuario['nombre']) ?>" required>
 
-            <div class="form-field">
-                <label for="apellido">Apellido</label>
-                <input type="text" id="apellido" name="apellido" value="<?= htmlspecialchars($usuario['apellido']) ?>">
-            </div>
+            <label for="apellido">Apellido</label>
+            <input type="text" id="apellido" name="apellido" value="<?= htmlspecialchars($usuario['apellido']) ?>">
 
-            <div class="form-field">
-                <label for="correo">Email</label>
-                <input type="email" id="correo" name="correo" value="<?= htmlspecialchars($usuario['correo']) ?>" required>
-            </div>
+            <label for="correo">Email</label>
+            <input type="email" id="correo" name="correo" value="<?= htmlspecialchars($usuario['correo']) ?>" required>
 
-            <div class="form-field">
-                <label for="password">Nueva Contraseña</label>
-                <input type="password" id="password" name="password" placeholder="Dejar en blanco para no cambiar">
-            </div>
+            <label for="password">Nueva Contraseña</label>
+            <input type="password" id="password" name="password" placeholder="Dejar en blanco para no cambiar">
 
-            <div class="form-field">
-                <label for="id_rol">Rol</label>
-                <select id="id_rol" name="id_rol" required>
-                    <option value="">Seleccione un rol</option>
-                    <?php foreach ($roles as $rol): ?>
-                        <option value="<?= $rol['id_rol'] ?>" <?= ((int)$usuario['id_rol'] === (int)$rol['id_rol']) ? 'selected' : '' ?>>
-                            <?= htmlspecialchars($rol['nombre']) ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
+            <label for="id_rol">Rol</label>
+            <select id="id_rol" name="id_rol" required>
+                <option value="">Seleccione un rol</option>
+                <?php foreach ($roles as $rol): ?>
+                    <option value="<?= $rol['id_rol'] ?>" <?= ((int)$usuario['id_rol'] === (int)$rol['id_rol']) ? 'selected' : '' ?>>
+                        <?= htmlspecialchars($rol['nombre']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
 
-            <div class="form-field">
-                <label for="id_area">Área</label>
-                <select id="id_area" name="id_area">
-                    <option value="0" <?= is_null($usuario['id_area']) ? 'selected' : '' ?>>Sin área</option>
-                    <?php foreach ($areas as $area): ?>
-                        <option value="<?= $area['id_area'] ?>" <?= ((int)$usuario['id_area'] === (int)$area['id_area']) ? 'selected' : '' ?>>
-                            <?= htmlspecialchars($area['nombre']) ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
+            <label for="id_area">Área</label>
+            <select id="id_area" name="id_area">
+                <option value="0" <?= is_null($usuario['id_area']) ? 'selected' : '' ?>>Sin área</option>
+                <?php foreach ($areas as $area): ?>
+                    <option value="<?= $area['id_area'] ?>" <?= ((int)$usuario['id_area'] === (int)$area['id_area']) ? 'selected' : '' ?>>
+                        <?= htmlspecialchars($area['nombre']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
 
-            <div class="form-field">
-                <label for="dpi">DPI</label>
-                <input type="text" id="dpi" name="dpi" value="<?= htmlspecialchars($usuario['dpi']) ?>" maxlength="15" required>
-            </div>
+            <label for="dpi">DPI</label>
+            <input type="text" id="dpi" name="dpi" value="<?= htmlspecialchars($usuario['dpi']) ?>" maxlength="15" required>
 
-            <div class="form-buttons">
-                <a href="usuarios.php" class="btn-cancelar">Cancelar</a>
-                <button type="submit" class="btn-guardar">Actualizar Usuario</button>
-            </div>
+            <button type="submit" class="btn-agregar">Actualizar Usuario</button>
+            <a href="usuarios.php" class="btn-cancelar">Cancelar</a>
         </form>
     </div>
 </body>

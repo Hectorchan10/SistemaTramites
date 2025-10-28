@@ -74,7 +74,6 @@ $stmt->close();
     <?php include '../../sidebaradministrador.php'; ?>
 
     <div class="contenido-principal">
-        <div class="contenido-usuario">
         <h1>Usuarios</h1>
         <div class="filtros-container">
             <form method="GET" action="" class="filtros-form">
@@ -103,8 +102,7 @@ $stmt->close();
         </div>
         <?php endif; ?>
 
-        <div class="tabla-container">    
-        <table >
+        <table>
             <thead>
                 <tr>
                     <th>ID</th>
@@ -151,16 +149,11 @@ $stmt->close();
             </tbody>
         </table>
     </div>
-
-    </div>
-    
-    </div>
     <script>
         (function () {
             var el = document.getElementById('flash-message');
             if (!el) return;
             
-            // Remove the mensaje parameter from URL without page reload
             if (window.history.replaceState && window.location.search.includes('mensaje=')) {
                 var cleanUrl = window.location.pathname + window.location.search.replace(/[&?]mensaje=[^&]+/, '').replace(/^&/, '?');
                 window.history.replaceState({}, document.title, cleanUrl);
