@@ -33,7 +33,7 @@ body {
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   background-color: var(--color-fondo);
   transition: all 0.3s ease;
