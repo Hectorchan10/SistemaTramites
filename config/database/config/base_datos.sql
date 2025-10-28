@@ -8,6 +8,7 @@ USE sistema_tramites;
 CREATE TABLE tbl_estado_tramite (
     id_estado_tramite INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
+    color CHAR(10),
     descripcion TEXT
 );
 
@@ -33,6 +34,7 @@ CREATE TABLE tbl_rol (
     nombre VARCHAR(50) NOT NULL UNIQUE,
     descripcion VARCHAR(255)
 );
+
 CREATE TABLE tbl_usuario (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,

@@ -5,6 +5,7 @@ require '../../../config/database/config/config_db.php';
 $query = "SELECT
     id_estado_tramite,
     nombre,
+    color,
     descripcion
 FROM tbl_estado_tramite
 ORDER BY id_estado_tramite ASC";
@@ -24,7 +25,7 @@ $estados = $result->fetch_all(MYSQLI_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Estados de Trámites</title>
-    <link rel="stylesheet" href="/style/areas.css">
+    <link rel="stylesheet" href="/style/estados.css">
 </head>
 
 <body>
@@ -67,7 +68,7 @@ $estados = $result->fetch_all(MYSQLI_ASSOC);
                 <?php endforeach; ?>
                 <?php else: ?>
                 <tr>
-                    <td colspan="4">No se encontraron estados de trámite.</td>
+                    <td colspan="5">No se encontraron estados de trámite.</td>
                 </tr>
                 <?php endif; ?>
             </tbody>

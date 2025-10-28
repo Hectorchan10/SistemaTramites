@@ -3,13 +3,16 @@ require '../../../config/database/config/config_db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = trim($_POST['nombre']);
+    $color = trim($_POST['color']);
     $descripcion = trim($_POST['descripcion']);
 
     if ($nombre === '') {
         $error = "El nombre del estado es obligatorio.";
+    } elseif ($color === '') {
+        $error = "Debe seleccionar un color para el estado.";
     } else {
-        $stmt = $mysqli->prepare("INSERT INTO tbl_estado_tramite (nombre, descripcion) VALUES (?, ?)");
-        $stmt->bind_param('ss', $nombre, $descripcion);
+        $stmt = $mysqli->prepare("INSERT INTO tbl_estado_tramite (nombre, color, descripcion) VALUES (?, ?, ?)");
+        $stmt->bind_param('sss', $nombre, $color, $descripcion);
 
         if ($stmt->execute()) {
             header("Location: estados.php?mensaje=Estado agregado correctamente");
@@ -28,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Estado de Trámite</title>
-    <link rel="stylesheet" href="/style/areas.css">
+    <link rel="stylesheet" href="/style/estados.css">
 </head>
 <body>
     <?php include '../../sidebaradministrador.php'; ?>
@@ -43,6 +46,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form method="POST" class="formulario">
             <label for="nombre">Nombre del estado:</label>
             <input type="text" name="nombre" id="nombre" required value="<?= htmlspecialchars($_POST['nombre'] ?? '') ?>">
+
+            <label for="color">Color del estado:</label>
+            <input type="color" name="color" id="color" required value="<?= htmlspecialchars($_POST['color'] ?? '#3b82f6') ?>">
 
             <label for="descripcion">Descripción:</label>
             <textarea name="descripcion" id="descripcion" rows="4"><?= htmlspecialchars($_POST['descripcion'] ?? '') ?></textarea>

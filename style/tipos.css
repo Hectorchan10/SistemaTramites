@@ -1,0 +1,409 @@
+/* ===== VARIABLES GLOBALES ===== */
+:root {
+  --color-primario: #1e3a8a;
+  --color-secundario: #3b82f6;
+  --color-texto: #fffefe;
+  --color-fondo: #f8fafc;
+  --color-borde: #cbd5e1;
+  --color-hover: #e2e8f0;
+  --color-error: #dc2626;
+  --color-exito: #10b981;
+  --font-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ===== CONTENIDO PRINCIPAL ===== */
+.contenido-principal {
+  margin-left: 25%;
+  width: 75%;
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: var(--color-fondo);
+  transition: all 0.3s ease;
+}
+
+/* Wrapper interno para centrar mejor el contenido */
+.contenido-principal > * {
+  width: 100%;
+  max-width: 1400px;
+}
+
+/* ===== ENCABEZADOS ===== */
+.contenido-principal h1 {
+  color: var(--color-primario);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--color-secundario);
+  text-align: center;
+}
+
+/* ===== FORMULARIOS (AGREGAR Y EDITAR TIPOS) ===== */
+.formulario {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.formulario label {
+  display: block;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+  color: var(--color-primario);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.formulario label:first-of-type {
+  margin-top: 0;
+}
+
+.formulario input[type="text"],
+.formulario input[type="email"],
+.formulario textarea,
+.formulario select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--color-borde);
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: var(--font-primary);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.formulario textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.formulario input:focus,
+.formulario textarea:focus,
+.formulario select:focus {
+  outline: none;
+  border-color: var(--color-secundario);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* ===== BOTONES DEL FORMULARIO ===== */
+.formulario button,
+.formulario .btn-cancelar {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+  text-decoration: none;
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.btn-agregar,
+.btn-guardar {
+  background-color: var(--color-primario);
+  color: var(--color-texto);
+}
+
+.btn-agregar:hover,
+.btn-guardar:hover {
+  background-color: #1e40af;
+}
+
+.btn-cancelar {
+  background-color: #6b7280;
+  color: white;
+}
+
+.btn-cancelar:hover {
+  background-color: #4b5563;
+}
+
+/* ===== MENSAJES ===== */
+.mensaje-exito,
+.mensaje-error {
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+  transition: opacity 0.4s ease;
+}
+
+.mensaje-exito {
+  background-color: var(--color-exito);
+  color: white;
+}
+
+.mensaje-error {
+  background-color: var(--color-error);
+  color: white;
+}
+
+/* ===== FILTROS ===== */
+.filtros-container {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+}
+
+.filtros-form {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filtro-grupo {
+  flex: 1 1 200px;
+}
+
+.filtro-grupo input,
+.filtro-grupo select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--color-borde);
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+.filtro-grupo input:focus,
+.filtro-grupo select:focus {
+  outline: none;
+  border-color: var(--color-secundario);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.btn-buscar,
+.btn-limpiar {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-buscar {
+  background-color: var(--color-secundario);
+  color: var(--color-texto);
+}
+
+.btn-buscar:hover {
+  background-color: #2563eb;
+}
+
+.btn-limpiar {
+  background-color: #6b7280;
+  color: white;
+}
+
+.btn-limpiar:hover {
+  background-color: #4b5563;
+}
+
+/* ===== ACCIONES SUPERIORES ===== */
+.acciones-superiores {
+  margin-bottom: 1.5rem;
+  text-align: right;
+}
+
+.acciones-superiores .btn-agregar {
+  display: inline-block;
+  background-color: var(--color-primario);
+  color: var(--color-texto);
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.acciones-superiores .btn-agregar:hover {
+  background-color: #1e40af;
+}
+
+/* ===== TABLAS ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+}
+
+table thead {
+  background-color: var(--color-primario);
+  color: var(--color-texto);
+}
+
+table th,
+table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+table th {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-texto);
+  background-color: var(--color-primario);
+}
+
+table td {
+  color: #000000;
+}
+
+table tbody tr:hover {
+  background-color: var(--color-hover);
+}
+
+table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ===== ACCIONES EN TABLA ===== */
+.acciones {
+  white-space: nowrap;
+}
+
+.acciones a {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  margin-right: 0.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.acciones a:first-child {
+  background-color: var(--color-secundario);
+  color: white;
+}
+
+.acciones a:first-child:hover {
+  background-color: #2563eb;
+}
+
+.acciones a:last-child {
+  background-color: #ef4444;
+  color: white;
+}
+
+.acciones a:last-child:hover {
+  background-color: #dc2626;
+}
+
+/* Botón de activar (verde) */
+.acciones a[href*="activar"] {
+  background-color: var(--color-exito);
+  color: white;
+}
+
+.acciones a[href*="activar"]:hover {
+  background-color: #059669;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .contenido-principal {
+    margin-left: 0;
+    width: 100%;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .contenido-principal {
+    padding: 1rem;
+    justify-content: flex-start;
+  }
+
+  .formulario {
+    padding: 1.5rem;
+  }
+
+  table {
+    font-size: 0.8rem;
+  }
+
+  table th,
+  table td {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .filtros-form {
+    flex-direction: column;
+  }
+
+  .filtro-grupo {
+    width: 100%;
+  }
+
+  .btn-buscar,
+  .btn-limpiar {
+    width: 100%;
+  }
+
+  .acciones a {
+    display: block;
+    margin-bottom: 0.5rem;
+    margin-right: 0;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .contenido-principal h1 {
+    font-size: 1.5rem;
+  }
+
+  table {
+    font-size: 0.75rem;
+  }
+
+  .formulario button,
+  .formulario .btn-cancelar {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+}

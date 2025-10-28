@@ -18,13 +18,16 @@ if (!$estado) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = trim($_POST['nombre']);
+    $color = trim($_POST['color']);
     $descripcion = trim($_POST['descripcion']);
 
     if (empty($nombre)) {
         $error = 'El nombre es obligatorio.';
+    } elseif (empty($color)) {
+        $error = 'Debe seleccionar un color.';
     } else {
-        $stmt = $mysqli->prepare("UPDATE tbl_estado_tramite SET nombre=?, descripcion=? WHERE id_estado_tramite=?");
-        $stmt->bind_param("ssi", $nombre, $descripcion, $id);
+        $stmt = $mysqli->prepare("UPDATE tbl_estado_tramite SET nombre=?, color=?, descripcion=? WHERE id_estado_tramite=?");
+        $stmt->bind_param("sssi", $nombre, $color, $descripcion, $id);
 
         if ($stmt->execute()) {
             header("Location: estados.php?mensaje=Estado actualizado correctamente");
@@ -43,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Estado de Trámite</title>
-    <link rel="stylesheet" href="/style/areas.css">
+    <link rel="stylesheet" href="/style/estados.css">
 </head>
 <body>
     <?php include '../../sidebaradministrador.php'; ?>
@@ -58,6 +61,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form method="POST" class="formulario">
             <label for="nombre">Nombre del estado:</label>
             <input type="text" name="nombre" id="nombre" required value="<?= htmlspecialchars($estado['nombre']) ?>">
+
+            <label for="color">Color del estado:</label>
+            <input type="color" name="color" id="color" required value="<?= htmlspecialchars($estado['color'] ?? '#3b82f6') ?>">
 
             <label for="descripcion">Descripción:</label>
             <textarea name="descripcion" id="descripcion" rows="4"><?= htmlspecialchars($estado['descripcion']) ?></textarea>

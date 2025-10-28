@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Nuevo Trámite</title>
-    <link rel="stylesheet" href="/style/areas.css">
+    <link rel="stylesheet" href="/style/tramites.css">
 </head>
 <body>
     <?php include '../../sidebaradministrador.php'; ?>
