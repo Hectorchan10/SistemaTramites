@@ -17,9 +17,7 @@
 }
 .tablero{
     display: flex;
-    justify-content: space-around;
-    margin-left: 5%;
-    position: relative;
+    position: absolute;
     top: 120px;
 }
 
