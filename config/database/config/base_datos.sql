@@ -22,6 +22,8 @@ CREATE TABLE tbl_tipo_tramite (
 CREATE TABLE tbl_area (
     id_area INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL UNIQUE,
+    correo VARCHAR(50),
+    descripcion VARCHAR (200),
     fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
     activo BOOLEAN DEFAULT TRUE
 );
@@ -38,6 +40,7 @@ CREATE TABLE tbl_usuario (
     password VARCHAR(255) NOT NULL,
     correo VARCHAR(100) UNIQUE,
     dpi VARCHAR(15) UNIQUE,
+    img varchar (100),
     activo BOOLEAN DEFAULT TRUE,
     id_area INT NULL,
     id_rol INT NOT NULL,
@@ -135,8 +138,8 @@ INSERT INTO tbl_tipo_tramite (nombre, descripcion) VALUES
 ('Permiso', 'Solicitud de autorización formal.'),
 ('Revisión', 'Trámite para revisión de documentos o procesos.');
 
-INSERT INTO tbl_area (nombre) VALUES
-('Secretaría'),
-('Jurídico'),
-('Finanzas'),
-('Dirección General');
+INSERT INTO tbl_area (nombre, correo, descripcion) VALUES
+('Secretaría','departamentosecretaria@gmail.com','Departamento encargado de registrar todos los archivos'),
+('Jurídico','departamentojuridico@gmail.com','Departamento encargado de todas las cuestiones juridicas'),
+('Finanzas','departamentofinanzas@gmail.com','Departamento encargado de las finanzas'),
+('Dirección General','departamentogeneral@gmail.com','Departamento encargado de toda la direccion general');

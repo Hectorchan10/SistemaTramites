@@ -48,7 +48,7 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
             Tramites
         </a>
 
-        <a href="/views/admin/areas.php"
+        <a href="/views/admin/area/areas.php"
             class="nav-item <?php echo ($current_page == 'areas') ? 'active' : ''; ?>">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
