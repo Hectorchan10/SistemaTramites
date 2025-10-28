@@ -288,6 +288,7 @@ table th {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--color-texto);
+  background-color: var(--color-primario);
 }
 
 table td {
