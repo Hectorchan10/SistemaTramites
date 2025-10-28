@@ -48,16 +48,27 @@ CREATE TABLE tbl_usuario (
     FOREIGN KEY (id_rol) REFERENCES tbl_rol(id_rol) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
+
+-- ========================================
+--  Tablas de trámites y remitentes
 CREATE TABLE tbl_remitente (
     id_remitente INT AUTO_INCREMENT PRIMARY KEY,
     tipo_persona ENUM('Natural', 'Jurídica') NOT NULL,
-    nombre VARCHAR(200) NOT NULL,
-    direccion VARCHAR(255),
-    nit VARCHAR(20) UNIQUE,
-    correo VARCHAR(100),
     telefono VARCHAR(20),
+    dpi VARCHAR(13) UNIQUE,
+    correo VARCHAR(100),
     razon_social VARCHAR(200)
 );
+
+CREATE TABLE tbl_tramite_remitente (
+    id_tramite_remitente INT AUTO_INCREMENT PRIMARY KEY,
+    asunto VARCHAR(100) NOT NULL UNIQUE,
+    tipo_tramite VARCHAR (100) NOT NULL,
+    documentos VARCHAR (100) NOT NULL,
+    mensaje VARCHAR (100) NOT NULL
+);
+
+-- ========================================
 
 CREATE TABLE tbl_tramite (
     id_tramite INT AUTO_INCREMENT PRIMARY KEY,

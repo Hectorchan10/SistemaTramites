@@ -9,12 +9,6 @@
 </head>
 <body>
     <?php include '../sidebaradministrador.php'; ?>
-
-    <div class="header-dashboard">
-        <h1>Tramite virtual</h1>
-        <a href="/logout.php" class="btn-logout">Cerrar sesión</a>
-    </div>
-
     <div class="tarjeta-mensaje">
         <h1>¡Bienvenido!</h1>
         <p>Has iniciado sesión correctamente</p>

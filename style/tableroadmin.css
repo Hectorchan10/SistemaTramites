@@ -1,40 +1,6 @@
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
-.header-dashboard {
-    background: linear-gradient(150deg, #4a90e2 50%, #357abd 100%);
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    left: 25.5%;
-    width: 74%;
-    height: 60px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.header-dashboard h1 {
-    margin: 0;
-    font-size: 24px;
-}
-
-.btn-logout {
-    background: #e74c3c;
-    color: white;
-    padding: 8px 16px;
-    text-decoration: none;
-    border-radius: 4px;
-    font-weight: bold;
-}
-
-.btn-logout:hover {
-    background: #c0392b;
-}
-
 .tarjeta-mensaje {
     background: linear-gradient(150deg, #079b1f 50%, #35f03e 100%);
     color: white;
@@ -59,8 +25,6 @@
     justify-content: center;
     gap: 20px;
 }
-
-
 
 .tarjeta-usuarios {
     background: linear-gradient(150deg, #380bb1 50%, #5422db 100%);
