@@ -74,6 +74,7 @@ $stmt->close();
     <?php include '../../sidebaradministrador.php'; ?>
 
     <div class="contenido-principal">
+        <div class="contenido-usuario">
         <h1>Usuarios</h1>
         <div class="filtros-container">
             <form method="GET" action="" class="filtros-form">
@@ -102,7 +103,8 @@ $stmt->close();
         </div>
         <?php endif; ?>
 
-        <table>
+        <div class="tabla-container">    
+        <table >
             <thead>
                 <tr>
                     <th>ID</th>
@@ -148,6 +150,10 @@ $stmt->close();
                 <?php endif; ?>
             </tbody>
         </table>
+    </div>
+
+    </div>
+    
     </div>
     <script>
         (function () {
